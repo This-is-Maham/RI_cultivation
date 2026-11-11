@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مسیر تهذیب ۴.۷ | Ruthless Cultivation Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<style>
+body{font-family:Vazirmatn,sans-serif;background:radial-gradient(ellipse at top,#2e1065 0,#0f172a 50%,#020617 100%) fixed;color:#e2e8f0;min-height:100vh}
+.g{background:rgba(30,41,59,.58);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(148,163,184,.18);border-radius:1.1rem}
+.bar{height:.75rem;border-radius:9999px;background:#0b1220;overflow:hidden;border:1px solid rgba(148,163,184,.15)}
+.bar>i{display:block;height:100%;border-radius:9999px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.xp{background:linear-gradient(90deg,#7c3aed,#fbbf24);box-shadow:0 0 12px #a78bfa}
+.hp{background:linear-gradient(90deg,#16a34a,#4ade80);box-shadow:0 0 12px #4ade80}
+.sat{background:linear-gradient(90deg,#0284c7,#38bdf8);box-shadow:0 0 10px #38bdf8}
+.task.done{opacity:.65;border-color:rgba(74,222,128,.5)}
+.lock{filter:grayscale(.75);opacity:.35;pointer-events:none}
+.chk{width:1.75rem;height:1.75rem;border:2px solid #64748b;border-radius:.5rem;flex:none;font-weight:700}
+.chk.on{background:#34d399;border-color:#6ee7b7;color:#0f172a}
+.btn{padding:.45rem .85rem;border-radius:.7rem;background:rgba(51,65,85,.85);font-size:.82rem;transition:all .15s}
+.btn:hover:not(:disabled){background:rgba(71,85,105,.95)}
+.btn-p{background:linear-gradient(90deg,#7c3aed,#d97706);color:#fff}
+.btn-s{padding:.35rem .7rem;border-radius:.6rem;background:rgba(124,58,237,.85);font-size:.75rem;white-space:nowrap;color:#fff}
+.nb{display:flex;align-items:center;gap:.3rem;padding:.45rem .7rem;border-radius:.7rem;font-size:.8rem;white-space:nowrap}
+.nb.on{background:linear-gradient(90deg,#7c3aed,#a855f7);color:#fff;font-weight:600}
+button:disabled{opacity:.42;cursor:not-allowed}
+.rar-C{border-color:#64748b}.rar-R{border-color:#38bdf8}.rar-E{border-color:#a855f7}.rar-L{border-color:#fbbf24}
+details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-marker{display:none}
+.tag{display:inline-block;font-size:.7rem;padding:.1rem .55rem;border-radius:9999px;background:rgba(251,191,36,.13);color:#fcd34d}
+@keyframes pop{0%{transform:scale(.96);box-shadow:0 0 0 #fbbf24}50%{transform:scale(1.02);box-shadow:0 0 45px #fbbf24}100%{transform:scale(1)}}
+.unlock{animation:pop 1.2s ease}
+input,select{background:#0b1220;border:1px solid rgba(148,163,184,.25);border-radius:.7rem;padding:.48rem .75rem;width:100%;color:#e2e8f0;font-size:.86rem}
+input[type=checkbox]{width:auto}
+input:focus,select:focus,button:focus-visible{outline:2px solid #fbbf24;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.fm-glow{animation:fmg 1.6s ease-in-out infinite alternate}@keyframes fmg{from{box-shadow:0 0 4px #fbbf24}to{box-shadow:0 0 18px #fbbf24}}</style>
+</head>
+<body>
+<div id="ts" class="g fixed top-4 inset-x-0 mx-auto w-fit max-w-[92vw] px-5 py-2.5 z-50 opacity-0 transition-opacity text-amber-300 text-sm font-semibold pointer-events-none shadow-2xl"></div>
+<div id="sv" class="fixed bottom-2 left-3 text-xs text-emerald-300 opacity-0 transition-opacity z-50 pointer-events-none">✓ ذخیره شد</div>
+<div class="max-w-3xl mx-auto p-3 pb-44">
+  <nav id="nav" class="g sticky top-2 z-30 flex gap-1 overflow-x-auto p-1.5 mb-3"></nav>
+  <div id="ban"></div>
+  <main id="v" class="space-y-3"></main>
+</div>
+<div id="tw" class="g fixed bottom-4 inset-x-4 mx-auto max-w-md p-3.5 z-40 hidden border-violet-400/60 shadow-2xl"></div>
+<input id="imf" type="file" accept="application/json,.json" class="hidden">
+<script>
+'use strict';
+/* ================= util ================= */
+const $=i=>document.getElementById(i),fa=s=>String(s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]),p2=n=>String(n).padStart(2,'0'),hm=t=>p2(Math.floor(t/60))+':'+p2(t%60);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const Sx=(s,n=500)=>typeof s=='string'?s.slice(0,n):'',Nx=(v,lo,hi,df=0)=>{v=+v;return Number.isFinite(v)?Math.min(hi,Math.max(lo,v)):df},Tx=v=>/^([01]\d|2[0-3]):[0-5]\d$/.test(v)?v:'',mm=s=>+s.slice(0,2)*60+ +s.slice(3);
+const DK=/^\d{4}-\d{2}-\d{2}$/,ID=/^[\w-]{1,24}$/,CL=/^#[0-9a-f]{6}$/i,CT={n:'عادی / قبل از دروازه',g:'پاداش / پشت دروازه دوپامین',s:'خواب / پایان شب'};
+const dm=id=>D.domains.find(x=>x.id==id)||{id,n:id,c:'#94a3b8',f:['موضوع','نتیجه مورد انتظار']};
+const uid=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,5),en=v=>String(v).replace(/[۰-۹]/g,c=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(c));
+
+/* ================= static data ================= */
+const R0=[['نوآموز','Iron','#9ca3af','🪨'],['شاگرد','Bronze','#d97706','🥉'],['تهذیب‌گر','Silver','#cbd5e1','🥈'],['استاد','Gold','#fbbf24','🥇'],['استاد بزرگ','Platinum','#2dd4bf','💠'],['پیشگام','Diamond','#60a5fa','💎'],['فرمانروا','Master','#c084fc','🔮'],['اسطوره','Grandmaster','#f87171','🌌'],['بزرگوار','Challenger','#fde047','👑']];
+const R=[['مس سبز','Green Copper','#4ade80','🟢'],['فولاد سرخ','Red Steel','#f87171','🔴'],['نقرهٔ سفید','White Silver','#e2e8f0','⚪'],['طلای زرد','Yellow Gold','#fbbf24','🟡'],['بلور بنفش','Purple Crystal','#c084fc','🟣'],['جاودانهٔ گو','Gu Immortal','#38bdf8','🦋'],['جاودان بزرگ','Great Immortal','#2dd4bf','🌌'],['جاودان اعظم','Supreme Immortal','#fb7185','🔥'],['ونرابل','Venerable','#fde047','👑']];
+const TH=[0,1500,4200,8500,15000,24000,36000,52000,75000];
+const PH=[['فاز ۰ (فعلی: بیداری ۱۰:۰۰ / خواب ۰۱:۳۰)',0,0],['فاز ۱ (بیداری ۰۹:۳۰ / خواب ۰۱:۳۰)',30,0],['فاز ۲ (بیداری ۰۹:۰۰ / خواب ۰۱:۰۰)',60,30],['فاز ۳ (بیداری ۰۸:۳۰ / خواب ۰۰:۳۰)',90,60],['فاز ۴ (هدف: بیداری ۰۸:۰۰ / خواب ۰۰:۰۰)',120,90]];
+const TB={
+  w:[600,'بیداری، صبحانه و قهوه (بدون گوشی)','',0,25,5],
+  d1:[645,'دوآپس ۱: تمرین عملی / سناریو','d',45,100,24],
+  d2:[700,'دوآپس ۲: ادامه سناریو / دیباگ','d',45,100,24],
+  d3:[750,'دوآپس ۳: مستندسازی / کامیت','d',45,100,24],
+  l:[795,'ناهار و استراحت (قرنطینه دوپامین)','',0,15,2],
+  u1:[900,'دانشگاه ۱: مبحث جدید','u',50,80,22],
+  u2:[960,'دانشگاه ۲: خلاصه‌برداری و نمونه سوال','u',50,80,22],
+  b:[1020,'استراحت و حرکات کششی','',0,10,2],
+  e1:[1050,'انگلیسی: تمرین فعال و تلفظ','e',30,50,15],
+  e2:[1080,'انگلیسی: Listening','e',45,75,22],
+  x:[1125,'ورزش، دوش و آماده‌سازی برنامه فردا','',0,35,8],
+  g:[1200,'تفریح: League of Legends','',0,0,0],
+  nv:[1200,'قطع بازی و مطالعه Reverend Insanity','',0,25,4],
+  f:[1200,'فعالیت آزاد و آماده‌سازی خواب','',0,15,2],
+  s:[1530,'خاموشی کامل سر ساعت','',0,40,8]
+};
+const RT={d:[100,45,24],u:[80,50,22],e:[50,30,15]};
+const STDIDS=['w','d1','d2','d3','u1','u2','e1','e2','x','s'];
+const DEFD=[{id:'d',n:'DevOps',c:'#a78bfa',f:['موضوع','نتیجه مورد انتظار','مدرک (Commit / یادداشت)']},{id:'u',n:'دانشگاه',c:'#fbbf24',f:['موضوع','نتیجه مورد انتظار']},{id:'e',n:'زبان',c:'#34d399',f:['موضوع','نتیجه مورد انتظار']}];
+function defTpls(gm=90,nv=45){
+  const mk=(id,n,gate,ids,ov,gt)=>({id,n,gate,tasks:ids.split(' ').map(i=>{
+    const b=TB[i],dom=b[2]||'',m=ov[i]||b[3]||0,r=RT[dom];
+    let t=b[0];if(i=='nv')t+=gm;if(i=='f')t+=gm+nv;if(gt&&i=='g')t=gt;if(gt&&i=='nv')t=gt+gm;
+    const x=dom&&r?Math.round(r[0]*m/r[1]):(b[4]||0),co=dom&&r?Math.floor(r[2]*m/r[1]):(b[5]||0);
+    return{id:i,n:b[1],t,m,dom,x,co,k:i=='s'?'s':['g','nv','f'].includes(i)?'g':'n'};
+  })});
+  return[
+    mk('std','استاندارد',{n:4,m:0,all:1,h:0},'w d1 d2 d3 l u1 u2 b e1 e2 x g nv f s',{}),
+    mk('re','شروع تدریجی (Re-entry)',{n:3,m:0,all:1,h:0},'w d1 d2 l u1 e1 g nv f s',{d1:35,d2:35,u1:35,e1:20}),
+    mk('min','کم‌انرژی (Minimum)',{n:3,m:0,all:0,h:18},'w d1 d2 u1 u2 e2 g nv s',{d1:30,d2:30,u1:30,u2:30,e2:30},1080)
+  ];
+}
+
+/* ================= Gu Worms (Primeval Aperture) ================= */
+const GUS=[
+  ['hope',1,'C','گوی امید','Hope Gu','+۲۵ XP و +۶ سنگ ثابت روی اولین تایمر تکمیل‌شده روز.','غذا: تکمیل حداقل ۱ جلسه تایمر در روز',280,0,'🕯️',(d,c)=>c.tmCount>=1],
+  ['liquor',1,'C','گوی شراب','Liquor Worm','+۱۵٪ سنگ اولیه بیشتر از تمام تسک‌های تایمردار.','غذا: خواب به‌موقع یا تیک تسک بیداری (w)',350,0,'🍶',(d,c)=>('w' in d.done)||(d.bed&&bedOk(d))],
+  ['moonlight',1,'C','گوی نور ماه','Moonlight Gu','+۱۵٪ XP بیشتر در تمام تسک‌ها و حوزه‌ها.','غذا: ۳۰ دقیقه زبان یا ۶۰ دقیقه مجموع تایمر',400,0,'🪲',(d,c)=>(c.tr.e||0)>=30||c.tm>=60],
+  ['jade',2,'R','گوی یشم سفید','White Jade Gu','کاهش جریمه HP روزهای ناقص و بی‌خوابی از ۲۰ به ۱۰.','غذا: تکمیل حداقل ۲ پومودورو با تایمر',700,1,'🛡️',(d,c)=>c.tmCount>=2],
+  ['breeze',2,'R','گوی نسیم بهاری','Spring Breeze Gu','ترمیم +۸ HP در هر روزی که حداقل ۲ تایمر معتبر بزنی.','غذا: ثبت حداقل ۶۰ دقیقه تایمر در روز',750,1,'🍃',(d,c)=>c.tm>=60],
+  ['wine4',2,'R','گوی شراب چهارطعم','Four Flavors Liquor','+۲۵٪ سنگ اولیه بیشتر روی تمام جلسات تخصصی.','غذا: فعالیت در ۲ حوزه یا ۷۵ دقیقه مجموع تایمر',850,1,'🍷',(d,c)=>c.doms.size>=2||c.tm>=75],
+  ['steel',3,'R','گوی چرخ‌دنده فولادی','Steel Gear Gu','+۳۰٪ XP و +۲۵٪ سنگ روی DevOps (+۱۰٪ روی سایر حوزه‌ها).','غذا: ۴۵ دقیقه DevOps یا ۹۰ دقیقه مجموع تایمر',1300,2,'⚙️',(d,c)=>(c.tr.d||0)>=45||c.tm>=90],
+  ['scholar',3,'R','گوی علامه بزرگ','Grand Scholar Gu','+۳۰٪ XP و +۲۵٪ سنگ روی دانشگاه + ۲ برابر پاداش مرور فاصله‌دار.','غذا: ۴۵ دقیقه دانشگاه یا ۲ مرور یا ۹۰ دقیقه تایمر',1300,2,'📜',(d,c)=>(c.tr.u||0)>=45||c.tm>=90||D.topics.filter(t=>t.lr==D.cur).length>=2],
+  ['wing',3,'R','گوی بال صاعقه','Lightning Wing Gu','+۲۵٪ XP و +۲۰٪ سنگ در صورت تیک زدن تسک بیداری (w).','غذا: تیک بیداری (w) + حداقل ۶۰ دقیقه تایمر',1400,2,'⚡',(d,c)=>('w' in d.done)&&c.tm>=60],
+  ['blood',4,'E','گوی جمجمه خونین','Blood Skull Gu','در هر روز موفق، +۱۲ HP اضافه ترمیم و +۳۵ سنگ تولید می‌کند.','غذا: باز کردن دروازه دوپامین (روز موفق)',2300,3,'💀',(d,c)=>c.ok],
+  ['effort',4,'E','گوی تلاش تمام‌عیار','All-Out Effort Gu','+۳۵٪ XP و +۲۵٪ سنگ بیشتر روی جلسات عمیق (تایمرهای ≥۴۰ دقیقه).','غذا: ثبت حداقل ۹۰ دقیقه تایمر در روز',2500,3,'🐗',(d,c)=>c.tm>=90],
+  ['eagle',4,'E','گوی بال عقاب طلایی','Golden Breeze Eagle','کاهش حد نصاب تایمر معتبر از ۸۰٪ به ۷۰٪ + ۲۰٪ XP کل.','غذا: تکمیل حداقل ۳ جلسه تایمر در روز',2600,3,'🦅',(d,c)=>c.tmCount>=3],
+  ['cleanse',5,'E','گوی پاکسازی روح','Cleanse Soul Gu','حذف کامل جریمه انحراف توجه (ds) + ۲۵٪ XP کل + ۱۰ HP در روز موفق.','غذا: ثبت ساعت خواب + حداقل ۹۰ دقیقه تایمر',3800,4,'🫧',(d,c)=>!!d.bed&&c.tm>=90],
+  ['lotus',5,'E','لوتوس گنجینه جوهره آسمانی','Heavenly Essence Lotus','در پایان هر روز موفق +۶۵ سنگ اولیه خالص رایگان تولید می‌کند.','غذا: حداقل ۱۱۰ دقیقه مجموع تایمر در روز',4000,4,'🪷',(d,c)=>c.tm>=110],
+  ['frenzy',5,'E','گوی دیوانگی خونین','Blood Frenzy Gu','+۴۰٪ XP و +۳۰٪ سنگ کل (در صورت عدم تغذیه ۵۰٪ گرسنه می‌شود!).','غذا: تکمیل حداقل ۳ پومودوروی معتبر',4200,4,'🩸',(d,c)=>c.tmCount>=3],
+  ['cicada',6,'L','زنجره بهار و پاییز','Spring Autumn Cicada','در صورت صفر شدن HP، نابودی ۱۰۰٪ سنگ‌ها (انحراف چی) را خنثی می‌کند و HP را روی ۶۰ برمی‌گرداند؛ پس از مصرف ۱۰ روز در نقاهت است. +۳۰٪ XP کل.','غذا: ثبت حداقل ۱۰۰ دقیقه تایمر در روز',5800,5,'🦗',(d,c)=>c.tm>=100],
+  ['sword',6,'L','گوی شمشیر پرنده','Flying Sword Gu','+۴۰٪ XP و +۳۰٪ سنگ اولیه روی تمام جلسات تخصصی.','غذا: ثبت حداقل ۱۲۰ دقیقه تایمر در روز',6200,5,'🗡️',(d,c)=>c.tm>=120],
+  ['mountain',6,'L','گوی کشیدن کوه','Pulling Mountain Gu','کاهش شرط دروازه دوپامین به اندازه ۱ جلسه (حداقل ۲) + ۲۵٪ سنگ.','غذا: حداقل ۱۰۰ دقیقه مجموع تایمر در روز',6600,5,'⛰️',(d,c)=>c.tm>=100],
+  ['persev',7,'L','گوی استقامت','Perseverance Gu','۲ برابر کردن ضریب کمبوی تایمرها (تا +۷۰٪) + ۳۰٪ XP کل.','غذا: تکمیل حداقل ۳ جلسه تایمر در روز',8800,6,'🪨',(d,c)=>c.tmCount>=3],
+  ['dragon',7,'L','گوی اژدهای شمشیر','Sword Dragon Gu','+۵۰٪ XP و +۴۰٪ سنگ کل + ۱ ماده اولیه اضافه هنگام اتمام تایمرهای ≥۴۵ دقیقه (در صورت تجهیز بودن در لحظه پایان تایمر).','غذا: ثبت حداقل ۱۳۵ دقیقه تایمر در روز',9500,6,'🐉',(d,c)=>c.tm>=135],
+  ['years',8,'L','گوی سال‌ها همچون آب','Years Flow Like Water','تولید +۱۰۰ سنگ و +۱۵۰ XP رایگان در هر روز موفق + ۵۵٪ XP کل.','غذا: حداقل ۱۴۰ دقیقه تایمر + خواب به‌موقع',13500,7,'⏳',(d,c)=>c.tm>=140&&d.bed&&bedOk(d)],
+  ['attitude',8,'L','گوی نگرش','Attitude Gu','کاهش استریک لازم برای تنگنای رتبه به اندازه ۱ روز + ۶۰٪ XP و ۴۵٪ سنگ.','غذا: باز کردن دروازه + حداقل ۱۳۵ دقیقه تایمر',14500,7,'🎭',(d,c)=>c.ok&&c.tm>=135],
+  ['wisdom',9,'L','گوی خرد','Wisdom Gu','+۸۵٪ XP کل و +۵۵٪ سنگ کل + ۲ برابر شدن پاداش ماموریت‌های فرعی و مرورها!','غذا: ثبت حداقل ۱۵۰ دقیقه تایمر در روز',22000,8,'🧠',(d,c)=>c.tm>=150],
+  ['fetus',9,'L','گوی جنین جاودان فرمانروا','Sovereign Immortal Fetus','+۷۰٪ XP و +۷۰٪ سنگ کل + نصف شدن گرسنگی تمام کرم‌های گوی دیگر!','غذا: حداقل ۱۵۰ دقیقه تایمر + ۳ جلسه معتبر',25000,8,'👑',(d,c)=>c.tm>=150&&c.tmCount>=3]
+];
+
+/* ================= Materials & Black Market Tokens ================= */
+const MATS={
+  grass:['🌿','علف روح','Spirit Grass','#4ade80'],
+  jade:['💎','یشم آسمانی','Heavenly Jade','#38bdf8'],
+  blood:['🩸','جوهر خون','Blood Essence','#f43f5e'],
+  frost:['❄️','بلور یخ‌زده','Frost Crystal','#a5f3fc'],
+  star:['☄️','شهاب‌سنگ ستاره‌ای','Star Fragment','#fde047']
+};
+const MW={grass:40,jade:28,blood:17,frost:10,star:5};
+function rollMat(minDur){
+  const ks=Object.keys(MW).filter(k=>k=='frost'?minDur>=30:k=='star'?minDur>=45:true);
+  let r=Math.random()*ks.reduce((a,k)=>a+MW[k],0);
+  for(const k of ks){r-=MW[k];if(r<0)return k}
+  return ks[0];
+}
+const TOKENS=[
+  ['league','مجوز ۱ دست لیگ اضافه','Extra Match Scroll','سقف مجاز بازی امشب را ۴۵ دقیقه افزایش داده و زمان ناول و خواب را شیفت می‌دهد.',300,'🎮'],
+  ['novel','طومار ۳ چپتر ناول روزانه','Daytime Novel Scroll','مجوز خواندن ۳ چپتر Reverend Insanity در استراحت ظهر (+۱۵ XP فوری).',250,'📖'],
+  ['bypass','طلسم شکاف دروازه','Gate Bypass Talisman','شرط باز شدن دروازه دوپامین را برای امروز به اندازه ۲ جلسه کاهش می‌دهد (حداقل ۱ جلسه).',800,'🔓'],
+  ['feast','ضیافت فانگ یوان (چیت‌میل)','Venerable Feast Coupon','مجوز سفارش غذای دلخواه یا چیت‌میل (+۱۵٪ سیری فوری برای تمام کرم‌های گو).',1000,'🍔'],
+  ['hib','مهر خواب زمستانی','Hibernation Seal','کرم گوی زنده را به خواب زمستانی می‌برد: بدون باف و بدون گرسنگی تا بیداری. از روی کارت گو مصرف می‌شود.',500,'❄️'],
+  ['pill','قرص تغذیه روح','Spirit Feeding Pill','افزودن فوری +۳۵٪ به سیری تمام کرم‌های گوی زنده بدون نیاز به تغذیه تک‌تک.',350,'🍖'],
+  ['elixir','اکسیر اراده پولادین','Iron Will Elixir','ترمیم فوری +۲۵ واحد سلامت اراده (کاهش جریمه HP).',450,'🧪'],
+  ['cata','کاتالیزور پالایش بهشتی','Heavenly Refinement Catalyst','افزودن فوری +۳ واحد به شمارنده شانس قطعی (Pity) دیگ پالایش.',600,'⚗️']
+];
+
+/* ================= Cosmetics Store ================= */
+const ST=[
+  ['fbronze','f','C','قاب برنزی پایدار','Bronze Frame','قابی کهنه؛ نشان شاگردان پایدار در آغاز مسیر.',280,0,'🛡️','#d97706'],
+  ['tdawn','t','C','جوینده‌ی سپیده','Dawn Seeker','برای کسی که زودتر از خورشید پای ترمینال می‌نشیند.',250,0,'🌅','#fbbf24'],
+  ['avgu','v','R','آواتار استاد گو','Gu Master','نماد تهذیب‌گران رام‌کننده‌ی کرم‌های گو.',650,1,'🦋','#a78bfa'],
+  ['aviolet','au','R','هاله‌ی مه بنفش','Violet Mist Aura','مهی اسرارآمیز از کوه چینگ مائو.',750,2,'🌫️','#a855f7'],
+  ['tsage','t','R','خردمند بهار و پاییز','Spring-Autumn Sage','عنوانی برای تهذیب‌گران صبور و استراتژیست.',850,2,'🍂','#34d399'],
+  ['fblood','f','R','قاب دریای خون','Blood Sea Frame','قابی سرخ از میراث نیاکان دریای خون.',1100,3,'🩸','#f43f5e'],
+  ['avjhin','v','E','آواتار ویرچوزو (Jhin)','The Virtuoso','چهار گلوله، چهار پومودوروی بی‌نقص؛ هنر در کمال است.',1900,3,'🎭','#f87171'],
+  ['avmoon','v','E','آواتار زاهد ماه','Moon Hermit','گوشه‌نشینی که شب‌ها با ماه سخن می‌گوید.',2200,4,'🌙','#93c5fd'],
+  ['agold','au','E','هاله‌ی طلایی تهذیب','Golden Cultivation Aura','نور زرین کسی که بر تنبلی چیره شده است.',2600,4,'✨','#fbbf24'],
+  ['tlotus','t','E','وارث لوتوس سرخ','Red Lotus Heir','کسی که سرنوشت و عادت‌های قدیم را می‌شکند.',3200,5,'🌺','#fb7185'],
+  ['avfang','v','L','آواتار فانگ یوان','Great Love Immortal','بدون پشیمانی؛ ۵۰۰ سال تجربه در نگاه کسی که هدفش را می‌شناسد.',5500,6,'🦅','#e2e8f0'],
+  ['adragon','au','L','هاله‌ی اژدهای شمشیر','Sword Dragon Aura','طوفانی از ارادهٔ نقره‌ای و بنفش.',6800,7,'🐉','#c084fc'],
+  ['tdemon','t','L','اهریمن پالایش بهشت','Heaven Refining Demon','بالاترین لقب برای کسی که سیستم دوپامین را رام کرده است.',8000,7,'🔥','#f59e0b'],
+  ['crown','f','L','تاج بزرگوار چلنجر','Venerable Challenger Crown','قابی که فقط فرمانروایان رنک ۹ بر سر می‌گذارند.',12000,8,'👑','#fde047']
+];
+const RAR={C:'Common',R:'Rare',E:'Epic',L:'Legendary'},SLOT={f:'قاب',v:'آواتار',au:'هاله',t:'عنوان'};
+
+const AC=[
+  ['first','First Step','اولین جلسه مطالعاتی','🌱',1,s=>s.s,30,'جلسه'],
+  ['begin','The Beginning','۳ روز فعال موفق','🌅',3,s=>s.okd,50,'روز'],
+  ['seven','Seven-Day Discipline','۵ روز موفق از ۷ روز فعال','🗓️',5,s=>s.w5,120,'روز'],
+  ['dev','DevOps Apprentice','۱۰ ساعت DevOps (ثبت‌شده با تایمر)','⚙️',600,s=>s.tr.d||0,180,'دقیقه'],
+  ['lin','Linux Mastery','۲۰ جلسه تمرین عملی DevOps','🐧',20,s=>s.prac,200,'جلسه'],
+  ['eng','English Awakening','۵ ساعت انگلیسی (تایمر)','🗣️',300,s=>s.tr.e||0,140,'دقیقه'],
+  ['acad','Academic Discipline','۱۰ ساعت دانشگاه (تایمر)','📚',600,s=>s.tr.u||0,180,'دقیقه'],
+  ['bal','Balanced Cultivator','روز موفق با فعالیت در هر سه حوزه','☯️',1,s=>s.bal,80,'روز'],
+  ['cb','Comeback','روز موفق پس از ≥۳ روز وقفه','🔥',1,s=>s.cb,100,'بار'],
+  ['col','Gu Collector','رام کردن ۴ کرم گو یا آیتم متفاوت','🏺',4,s=>Object.keys(D.inv).length+Object.keys(D.gu).length,150,'مورد']
+];
+const NAV=[['home','داشبورد','layout-dashboard'],['tasks','تسک‌های روزانه','list-checks'],['fc','سنگر تهذیب','target'],['ap','روزنه و پالایش گو','flame'],['rt','مدیریت روتین','sliders-horizontal'],['store','بهشت زرد (فروشگاه)','store'],['inv','کلکسیون و ظاهر','sparkles'],['stats','تحلیل و آمار','activity'],['ach','دستاوردها','trophy'],['hist','تاریخچه','history'],['set','تنظیمات','settings']];
+
+/* ================= state / persistence (Schema v4) ================= */
+const K4='cultivation-rpg-v4',K3='cultivation-rpg-v3',K2='cultivation-rpg-v2',K1='cultivation-rpg-v1';
+let D,tab='home',gPrev=null,prevR=-1,skipP=0,lvFx=0,gFx=0,invR='all',invC='all',warned=0,eT='',stTab='gu';
+
+const mm_=m=>{const r={};if(m&&typeof m=='object')Object.keys(m).slice(0,30).forEach(k=>{if(ID.test(k)&&Array.isArray(m[k]))r[k]=m[k].slice(0,3).map(v=>Sx(v,200))});return r};
+const oo_=m=>{const r={};if(m&&typeof m=='object')Object.keys(m).slice(0,30).forEach(k=>{if(ID.test(k))r[k]=Sx(m[k])});return r};
+const vg=g=>({n:Nx(g&&g.n,0,50,0)|0,m:Nx(g&&g.m,0,1000,0)|0,all:g&&g.all?1:0,h:Nx(g&&g.h,0,23,0)|0});
+const capX=(m,x,co)=>m>0?{x:Math.min(x,Math.max(250,m*6)),co:Math.min(co,Math.max(60,Math.ceil(m*1.5)))}:{x:Math.min(x,120),co:Math.min(co,30)};
+const vt=t=>{const r=vt0(t);if(r){const c=capX(r.m,r.x,r.co);r.x=c.x;r.co=c.co}return r};
+const vt0=t=>{if(!t||typeof t!='object'||!ID.test(t.id))return null;const dom=ID.test(t.dom)?t.dom:'';return{id:t.id,n:Sx(t.n,80)||'تسک',t:Nx(t.t,0,2879,0)|0,m:Nx(t.m,0,600,0)|0,dom,x:Nx(t.x,0,5000,0)|0,co:Nx(t.co,0,5000,0)|0,k:['n','g','s'].includes(t.k)?t.k:'n'}};
+const vtp=x=>{if(!x||typeof x!='object')return null;const seen=new Set();return{id:ID.test(x.id)?x.id:uid('p'),n:Sx(x.n,40)||'تمپلیت',gate:vg(x.gate),tasks:(Array.isArray(x.tasks)?x.tasks:[]).slice(0,60).map(vt).filter(t=>t&&!seen.has(t.id)&&seen.add(t.id))}};
+const defD=()=>({v:4,set:{notif:false,sug:0,game:90,novel:45,ds:0},tpl:'re',phase:0,xp0:0,coins0:0,days:{},cur:'',next:{},inv:{},eq:{},gu:{},guEq:[],mats:{grass:1,jade:1,blood:0,frost:0,star:0},ascAt:'',updatedAt:0,wkTargets:{},pity:0,inh:0,hpPen:0,asc:0,topics:[],tokens:{},bty:{},ach:{},tm:null,leg:null,domains:JSON.parse(JSON.stringify(DEFD)),templates:defTpls()});
+const newDay=(d,m)=>({mode:'n',tpl:d.tpl,tn:'',done:{},extra:[],ov:{},snap:null,mis:mm_(m),out:{},note:'',energy:0,bed:'',wake:'',ph:d.phase,closed:0,st:'',xp:0,coins:0,byp:0,fed:0,cic:0,toks:{}});
+const lg=s=>({xp:Nx(s.xp,0,1e6),streak:Nx(s.streak,0,9999)|0,hist:(Array.isArray(s.hist)?s.hist:[]).slice(0,60).map(h=>({d:Sx(h&&h.d,40),n:Nx(h&&h.n,0,99)|0,m:Sx(h&&h.m,4),ok:!!(h&&h.ok)}))});
+
+function cdN(o){if(!o||typeof o!='object')return null;const n={satDiff:{},deadGus:{},deadEq:[],deadCost:Nx(o.deadCost,0,1e7,0)|0,hpPenDiff:Nx(o.hpPenDiff,-200,200,0)|0};
+  Object.keys(o.satDiff||{}).slice(0,40).forEach(k=>n.satDiff[k]=Nx(o.satDiff[k],-100,100,0)|0);
+  Object.keys(o.deadGus||{}).slice(0,40).forEach(k=>{const g=o.deadGus[k]||{};n.deadGus[k]={sat:0,cost:Nx(g.cost,0,1e5,0)|0,hib:0}});
+  n.deadEq=(Array.isArray(o.deadEq)?o.deadEq:[]).filter(k=>typeof k=='string'&&n.deadGus[k]);return n}
+function pcN(o){if(!o||typeof o!='object'||!o.gu||typeof o.gu!='object')return null;const n={gu:{},guEq:[],coins0:Nx(o.coins0,-1e6,1e6,0),hpPen:Nx(o.hpPen,-50,100,0)|0};
+  Object.keys(o.gu).slice(0,40).forEach(k=>{if(!GUS.some(x=>x[0]==k))return;const g=o.gu[k]||{};n.gu[k]={sat:Nx(g.sat,0,100,100)|0,cost:Nx(g.cost,0,1e5,0),hib:g.hib?1:0,cd:Nx(g.cd,0,30,0)|0}});
+  n.guEq=(Array.isArray(o.guEq)?o.guEq:[]).filter(k=>typeof k=='string'&&n.gu[k]).slice(0,3);return n}
+function norm(o){
+  const d=defD(),s=(o&&o.set)||{};o=o&&typeof o=='object'?o:{};const ver=o.v||2;
+  d.set={notif:!!s.notif,sug:s.sug?1:0,game:Nx(s.game,0,300,90)|0,novel:Nx(s.novel,0,300,45)|0,ds:s.ds?1:0};
+  d.phase=Nx(o.phase,0,4)|0;d.xp0=Nx(o.xp0,-1e6,1e6,0);d.coins0=Nx(o.coins0,-1e6,1e6,0);d.next=mm_(o.next);d.asc=o.asc==null?-1:Nx(o.asc,0,8)|0;d.topics=(Array.isArray(o.topics)?o.topics:[]).slice(0,80).filter(x=>x&&ID.test(x.id)&&ID.test(x.dom||'')).map(x=>({id:x.id,dom:x.dom,n:Sx(x.n,80),st:Nx(x.st,0,5)|0,due:DK.test(x.due)?x.due:lday(),lr:DK.test(x.lr)?x.lr:''}));
+  d.templates=defTpls(d.set.game,d.set.novel);
+  if(ver>=3){
+    const dms=[];(Array.isArray(o.domains)?o.domains:[]).slice(0,20).forEach(x=>{if(x&&ID.test(x.id)&&!dms.some(y=>y.id==x.id)){const f=(Array.isArray(x.f)?x.f:[]).slice(0,3).map(v=>Sx(v,40)).filter(Boolean);dms.push({id:x.id,n:Sx(x.n,30)||x.id,c:CL.test(x.c)?x.c:'#a78bfa',f:f.length?f:['موضوع','نتیجه مورد انتظار']})}});if(dms.length)d.domains=dms;
+    const tps=[];(Array.isArray(o.templates)?o.templates:[]).slice(0,20).forEach(x=>{
+      const t=vtp(x);
+      if(t&&!tps.some(y=>y.id==t.id)){
+        if(ver===3)t.tasks.forEach(tk=>{if(!tk.dom&&!tk.x&&TB[tk.id]){tk.x=TB[tk.id][4]||0;tk.co=TB[tk.id][5]||0}});
+        tps.push(t);
+      }
+    });
+    if(tps.length)d.templates=tps;
+  }
+  d.tpl=ver<3?(s.base=='std'?'std':'re'):(d.templates.some(t=>t.id==o.tpl)?o.tpl:d.templates[0].id);
+  const DT=defTpls(d.set.game,d.set.novel);
+  Object.keys(o.days||{}).forEach(k=>{
+    if(!DK.test(k))return;
+    const x=o.days[k]||{},tid=ver<3?(x.mode=='min'?'min':x.pl=='std'?'std':'re'):(ID.test(x.tpl)?x.tpl:d.tpl);
+    const tkObj=x.toks&&typeof x.toks=='object'?{league:Nx(x.toks.league,0,5)|0,novel:Nx(x.toks.novel,0,5)|0,feast:Nx(x.toks.feast,0,5)|0}:{};
+    const y={mode:x.mode=='rest'?'rest':'n',tpl:tid,tn:Sx(x.tn,60),done:{},extra:(Array.isArray(x.extra)?x.extra:[]).slice(0,30).map(vt).filter(Boolean),ov:{},snap:null,mis:mm_(x.mis),out:oo_(x.out),note:Sx(x.note),energy:Nx(x.energy,0,5)|0,bed:Tx(x.bed),wake:Tx(x.wake),ph:Nx(x.ph,0,4)|0,closed:Nx(x.closed,0,9e15),st:['ok','part','rest'].includes(x.st)?x.st:'',xp:Nx(x.xp,0,1e5),coins:Nx(x.coins,0,1e5),byp:Nx(x.byp,0,10)|0,fed:x.fed?1:0,cic:x.cic?1:0,devWipe:x.devWipe?1:0,devRf:x.devRf?1:0,toks:tkObj,gHp:x.gHp&&typeof x.gHp=='object'?{jade:x.gHp.jade?1:0,blood:x.gHp.blood?1:0,cleanse:x.gHp.cleanse?1:0,breeze:x.gHp.breeze?1:0}:null,ascRk:x.ascRk==null?null:Nx(x.ascRk,-1,8)|0,closeDelta:x.closed?cdN(x.closeDelta):null,preClose:x.closed?pcN(x.preClose):null};
+    if(y.closed&&!y.st)y.st='part';
+    Object.keys(x.done||{}).forEach(i=>{if(ID.test(i))y.done[i]=Nx(x.done[i],0,600)});
+    Object.keys(x.ov||{}).forEach(i=>{if(ID.test(i)&&Tx(x.ov[i]))y.ov[i]=x.ov[i]});
+    if(y.closed){if(ver>=3&&x.snap)y.snap=vtp(x.snap);if(!y.snap)y.snap=JSON.parse(JSON.stringify(DT.find(z=>z.id==tid)||DT[1]));y.tn=y.tn||y.snap.n}
+    d.days[k]=y;
+  });
+  const oldArtMap={iron:'liquor',stone:'moonlight',lantern:'jade',scroll:'scholar'};
+  Object.keys(o.inv||{}).forEach(k=>{
+    if(ST.some(z=>z[0]==k))d.inv[k]=Nx(o.inv[k],0,1e5);
+    else if(oldArtMap[k]){const gid=oldArtMap[k];d.gu[gid]={sat:100,cost:Nx(o.inv[k],0,1e5)};if(d.guEq.length<3&&!d.guEq.includes(gid))d.guEq.push(gid)}
+  });
+  Object.keys(o.gu||{}).forEach(k=>{if(GUS.some(g=>g[0]==k)){const g=o.gu[k]||{};d.gu[k]={sat:Nx(g.sat,0,100,100)|0,cost:Nx(g.cost,0,1e5,0),hib:g.hib&&Nx(g.sat,0,100,100)>0?1:0,cd:Nx(g.cd,0,30,0)|0}}});
+  if(Array.isArray(o.guEq))o.guEq.slice(0,3).forEach(k=>{if(d.gu[k]&&!d.guEq.includes(k))d.guEq.push(k)});
+  Object.keys(SLOT).forEach(s=>{const id=o.eq&&o.eq[s],z=ST.find(z=>z[0]==id);if(z&&z[1]==s&&d.inv[id]!==undefined)d.eq[s]=id});
+  if(o.mats&&typeof o.mats=='object')Object.keys(MATS).forEach(k=>d.mats[k]=Nx(o.mats[k],0,9999,0)|0);
+  d.pity=Nx(o.pity,0,10,0)|0;d.inh=Nx(o.inh,0,99,0)|0;d.ascAt=DK.test(o.ascAt)?o.ascAt:'';d.updatedAt=Nx(o.updatedAt,0,4e12,0);d.wkTargets={};if(o.wkTargets&&typeof o.wkTargets=='object')Object.keys(o.wkTargets).slice(0,600).forEach(k=>{if(DK.test(k))d.wkTargets[k]=Nx(o.wkTargets[k],200,1e5,200)|0});d.hpPen=Nx(o.hpPen,-50,100,0)|0;
+  if(o.tokens&&typeof o.tokens=='object')TOKENS.forEach(tk=>{if(o.tokens[tk[0]])d.tokens[tk[0]]=Nx(o.tokens[tk[0]],0,999,0)|0});
+  if(o.bty&&typeof o.bty=='object')Object.keys(o.bty).forEach(k=>{if(/^d\d{4}-\d{2}-\d{2}_\d$/.test(k))d.bty[k]=o.bty[k]==2?2:1});
+  AC.forEach(a=>{const v=o.ach&&o.ach[a[0]];if(typeof v=='string'&&DK.test(v))d.ach[a[0]]=v});
+  const t=o.tm;if(t&&typeof t=='object'&&DK.test(t.day)&&d.days[t.day]&&(t.br||ID.test(t.id)))d.tm={id:t.br?'':t.id,day:t.day,total:Nx(t.total,1,36000,60),left:Nx(t.left,0,36000),end:Nx(t.end,0,9e15),run:t.run?1:0,br:t.br?1:0,n:Sx(t.n,80)||(TB[t.id]&&TB[t.id][1])||'',ds:Nx(t.ds,0,20)|0};
+  d.cur=DK.test(o.cur)&&d.days[o.cur]?o.cur:'';d.leg=o.leg&&typeof o.leg=='object'?lg(o.leg):null;
+  if(!o.mig47){const fx=t=>{if(!t||!STDIDS.includes(t.id))return;const b=TB[t.id],r=RT[t.dom];if(r&&t.m>0){t.x=Math.round(r[0]*t.m/r[1]);t.co=Math.floor(r[2]*t.m/r[1])}else if(!t.dom){t.x=b[4];t.co=b[5]}};
+    d.templates.forEach(tp=>(tp.tasks||[]).forEach(fx));const cdy=d.days[d.cur];if(cdy&&!cdy.closed&&cdy.snap)(cdy.snap.tasks||[]).forEach(fx);
+    if(d.gu.cicada&&d.gu.cicada.sat===0&&!d.gu.cicada.hib&&!d.gu.cicada.cd)d.gu.cicada.cd=10}
+  d.mig47=1;
+  d.mig462=1;
+  if(!o.mig462&&d.asc>=0){const td=lday();Object.keys(d.days).forEach(k=>{const x=d.days[k];if(x.closed&&x.st=='ok'&&k<td&&x.ascRk===d.asc&&(!d.ascAt||k<=d.ascAt))x.ascRk=-1})}
+  return d;
+}
+function mig(o){o=o&&typeof o=='object'?o:{};const d=defD(),k=lday(),tx=m=>({d:[Sx(m&&m.d,200)],u:[Sx(m&&m.u,200)],e:[Sx(m&&m.e,200)]});
+  d.xp0=Nx(o.xp,0,1e6);d.phase=Nx(o.phase,0,4)|0;d.leg=lg(o);d.cur=k;d.days[k]=newDay(d,tx(o.mission));d.next=tx(o.tmr);return d}
+function load(){
+  let r=null;
+  try{
+    r=localStorage.getItem(K4);if(r)return norm(JSON.parse(r));
+    for(const[k,f,lbl]of[[K3,norm,'نسخه ۳'],[K2,norm,'نسخه ۲'],[K1,mig,'نسخه ۱']]){
+      r=localStorage.getItem(k);
+      if(r){try{localStorage.setItem(k+'-pre-v4-backup',r)}catch(e){}const m=f(JSON.parse(r));setTimeout(()=>toast('✅ اطلاعات '+lbl+' با موفقیت به نسخه ۴.۷ منتقل شد'),300);return m}
+    }
+  }catch(e){console.error(e);if(r)try{localStorage.setItem(K4+'-corrupt',r)}catch(_){}toast('⚠️ داده خراب بود؛ نسخه خام نگه داشته شد')}
+  return defD();
+}
+let _sig=null,_adopt=0,_pris=false,SRVNO=0;
+function save(){
+  if(!_adopt){const s=sigOf();if(_sig===null)_sig=s;else if(s!==_sig){_sig=s;if(!_pris){D.updatedAt=Date.now();schedSync()}}}
+  try{localStorage.setItem(K4,JSON.stringify(D))}catch(e){if(!warned){warned=1;toast('⚠️ ذخیره‌سازی ناموفق؛ از Export استفاده کن')}}}
+
+/* ================= logic & Gu Buffs ================= */
+const lday=(t=Date.now())=>{const x=new Date(t-4*36e5);return x.getFullYear()+'-'+p2(x.getMonth()+1)+'-'+p2(x.getDate())};
+const dFa=k=>new Date(k+'T12:00:00').toLocaleDateString('fa-IR',{weekday:'short',month:'long',day:'numeric'});
+const wk=n=>Array.from({length:n},(_,i)=>lday(Date.now()-(n-1-i)*864e5));
+const cd=()=>D.days[D.cur],eqo=s=>ST.find(z=>z[0]==D.eq[s]),closedKeys=()=>Object.keys(D.days).filter(k=>D.days[k].closed).sort();
+const TP=id=>D.templates.find(t=>t.id==id)||D.templates[0],tp=d=>d.snap||TP(d.tpl),tasks=d=>d.mode=='rest'?[]:[...tp(d).tasks,...d.extra];
+// Fix 4: Extra Match Scroll ('league') shifts 'nv' and 'f' by +45m per scroll used today
+const at=(t,d)=>{
+  if(d.ov[t.id])return mm(d.ov[t.id]);
+  const g=tp(d).gate,sh=g.h&&t.k=='g'?0:PH[d.ph][t.k=='s'?2:1];
+  const lgShift=(t.id=='nv'||t.id=='f'||t.id=='s'||t.k=='s')&&d.toks&&d.toks.league?45*d.toks.league:0;
+  return((t.t+lgShift-sh)%1440+1440)%1440;
+};
+
+function gcost(id,st){const g=GUS.find(x=>x[0]==id)||[0,1,'',0,0,0,0,300],r=g[1];return st.sat>0?Math.max(20,Math.ceil((100-st.sat)*.8*r)):Math.round(g[7]*.4)}
+const FMS=[['⚔️ آرایش آغازین چینگ مائو',['hope','liquor','moonlight'],.15,.15,0],['⚙️ آرایش معمار زیرساخت',['steel','scholar','wine4'],.25,.25,1],['🩸 حرکت قاتل: جنون دریای خون',['blood','frenzy','effort'],.35,0,0],['🗡️ حرکت قاتل: طوفان شمشیر بی‌کران',['sword','dragon','persev'],.4,.35,0],['🌌 حرکت قاتل ونرابل: تسلط بر زمان و خرد',['cicada','years','wisdom'],.6,.5,0]];
+const fmOn=i=>FMS[i][1].every(g=>hasGu(g));
+const fmBanner=()=>FMS.filter((f,i)=>fmOn(i)).map(f=>`<section class="g p-3 text-center font-extrabold text-amber-300 fm-glow">✨ ${f[0]} فعال است · +${fa(Math.round(f[2]*100))}٪ XP${f[3]?' · +'+fa(Math.round(f[3]*100))+'٪ 🔷':''}${f[4]?' (جلسات تخصصی)':''}</section>`).join('');
+function okB(){let x=0,co=0;if(hasGu('blood'))co+=35;if(hasGu('lotus'))co+=65;if(hasGu('years')){co+=100;x+=150}if(fmOn(2))co+=25;return{x,co}}
+const ndOf=a=>Math.max(2,Math.min(7,3+a)-(hasGu('attitude')?1:0)),okAt=a=>{const ks=closedKeys().filter(k=>D.days[k].st=='ok'),lg=ks.filter(k=>D.days[k].ascRk===-1&&k>(D.ascAt||'')).length;return ks.filter(k=>D.days[k].ascRk===a).length+Math.min(lg,streak())};
+const fixAsc=()=>Object.values(D.days).forEach(x=>{if(x.st=='ok'&&x.ascRk==null)x.ascRk=-1});
+const gAdd=n=>Object.values(D.gu).forEach(g=>{if(g.sat>0&&!g.hib)g.sat=Math.min(100,g.sat+n)});
+const hasGu=id=>D&&D.guEq.includes(id)&&D.gu[id]&&D.gu[id].sat>0&&!D.gu[id].hib&&!D.gu[id].cd;
+
+function calc(d){
+  const g=tp(d).gate,allT=tasks(d),ss=allT.filter(t=>t.dom&&t.m>0),dn=ss.filter(t=>t.id in d.done),tr={};
+  let xp=0,co=0,tm=0,tmCount=0;
+  const persev=hasGu('persev')?2:1,thr=hasGu('eagle')?.7:.8;
+  allT.filter(t=>t.id in d.done).forEach(t=>{
+    const durM=d.done[t.id]||0,isTimed=t.m>0,usedTimer=durM>0;
+    if(t.dom){tr[t.dom]=(tr[t.dom]||0)+durM;tm+=durM}
+    let txp=t.x||0,tco=t.co||0;
+    if(isTimed&&!usedTimer){
+      txp=Math.round(txp*0.2);tco=0;
+    }else if(isTimed&&usedTimer){
+      const fr=Math.min(1,durM/t.m);txp=Math.round(txp*fr);tco=Math.round(tco*fr);if(fr>=thr)tmCount++;
+      const step=fr<thr?0:tmCount===1?0:tmCount===2?0.1:tmCount===3?0.2:0.35;
+      const mult=1+(step*persev);
+      txp=Math.round(txp*mult);tco=Math.round(tco*mult);
+      if(hasGu('liquor'))tco=Math.round(tco*1.15);
+    }
+    let X=0,C=0;const A_=(g,x,c)=>{if(hasGu(g)){X+=x;C+=c||0}};
+    [['moonlight',.15],['eagle',.2],['cleanse',.25],['frenzy',.4,.3],['cicada',.3],['persev',.3],['years',.55],['attitude',.6,.45],['wisdom',.85,.55],['fetus',.7,.7],['dragon',.5,.4],['mountain',0,.25]].forEach(a=>A_(...a));
+    if('w' in d.done)A_('wing',.25,.2);
+    if(t.dom){A_('wine4',0,.25);A_('sword',.4,.3);if(t.dom=='d')A_('steel',.3,.25);else A_('steel',.1,.1);if(t.dom=='u')A_('scholar',.3,.25)}
+    if(isTimed&&usedTimer&&durM>=40)A_('effort',.35,.25);
+    FMS.forEach((f,i)=>{if(fmOn(i)&&(!f[4]||t.dom)){X+=f[2];C+=f[3]}});
+    txp=Math.round(txp*(1+X));tco=Math.round(tco*(1+C));
+    xp+=txp;co+=tco;
+  });
+  if(hasGu('hope')&&tmCount>=1){xp+=25;co+=6}
+  const mt=hasGu('mountain')?1:0,reqN=Math.max(mt?Math.min(2,g.n||1):1,(g.n||0)-(d.byp||0)*2-mt);
+  // Fix 2: 'got' is built strictly from 'vn' (valid timed sessions >=80%), preventing manual-check domain bypass
+  const vn=dn.filter(t=>t.m>0&&d.done[t.id]>=Math.ceil(t.m*thr)),got=new Set(vn.map(t=>t.dom)),base=(g.n>0&&vn.length>=reqN)||(g.m>0&&tm>=g.m)||(!g.n&&!g.m);
+  const ok=d.mode!='rest'&&vn.length>0&&base&&(!g.all||[...new Set(ss.map(t=>t.dom))].every(x=>got.has(x)));
+  return{ss,dn,vn:vn.length,n:dn.length,tot:ss.length,xp,co,tr,tm,tmCount,got,doms:got,g,reqN,ok};
+}
+const gate=d=>{if(d.mode=='rest')return null;const c=calc(d),h=new Date().getHours(),tOk=!c.g.h||h>=c.g.h||h<4;return{open:c.ok&&tOk,c,tOk}};
+const auto=d=>d.mode=='rest'?'rest':calc(d).ok?'ok':'part';
+
+function restOk(d){const dk=Object.keys(D.days).find(k=>D.days[k]===d),w=wkS(dk);return Object.keys(D.days).filter(k=>k!=dk&&D.days[k].mode=='rest'&&wkS(k)==w).length<2}
+const sbm=i=>1+Math.min(.5,(streak()+(i||0))*.05);
+function settle(d,st){
+  const wasClosed=d.closed;
+  if(st=='ok'&&!calc(d).ok)st='part';
+  if(st=='rest'&&!restOk(d)){st='part';toast('🚫 سقف ۲ روز آزاد در هفته پر شده؛ ثبت شد به‌عنوان ناقص')}
+  if(st=='rest')d.mode='rest';else if(d.mode=='rest')d.mode='n';
+  if(!d.snap){const t=tp(d);d.snap=JSON.parse(JSON.stringify({id:t.id,n:t.n,gate:t.gate,tasks:t.tasks}))}
+  d.tn=d.snap.n;
+  const c=calc(d);d.st=st;d.closed=d.closed||Date.now();
+  if(!wasClosed&&st!='rest')d.gHp={jade:+hasGu('jade'),blood:+hasGu('blood'),cleanse:+hasGu('cleanse'),breeze:+(hasGu('breeze')&&c.tmCount>=2)};
+  if(st=='ok'&&d.ascRk==null)d.ascRk=Math.max(0,D.asc|0);
+  let bonusCo=(st=='ok'&&c.ok)?10:0;
+  if(st=='ok')bonusCo+=okB().co;
+  d.xp=st=='rest'?0:Math.round(c.xp*(st=='ok'?sbm(0):1))+(st=='ok'?okB().x:0);
+  d.coins=st=='rest'?0:c.co+bonusCo;
+  if(!wasClosed&&!d.fed&&st!='rest'){
+    d.fed=1;d.preClose={gu:JSON.parse(JSON.stringify(D.gu)),guEq:[...D.guEq],coins0:D.coins0,hpPen:D.hpPen||0};const cr=hpCalc(d),hungry=[],dead=[],recov=[];D.hpPen=D.hpPen>0?Math.max(0,D.hpPen-3):Math.min(0,(D.hpPen||0)+3);
+    const fet=hasGu('fetus'),hun=g=>{const b=g=='frenzy'?50:35;return fet&&g!='fetus'?Math.ceil(b/2):b};
+    Object.keys(D.gu).forEach(gid=>{
+      const gDef=GUS.find(x=>x[0]==gid),gSt=D.gu[gid];
+      if(!gDef||!gSt||gSt.hib)return;
+      if(gSt.cd>0){gSt.cd--;if(gSt.cd===0&&gSt.sat===0){gSt.sat=15;recov.push(gid)}return}
+      const was0=gSt.sat===0,eqd=D.guEq.includes(gid),fed=eqd&&gDef[10](d,c);
+      if(fed)gSt.sat=Math.min(100,gSt.sat+30);
+      else if(was0){if(gSt.cost)D.coins0-=gSt.cost;delete D.gu[gid];D.guEq=D.guEq.filter(x=>x!==gid);dead.push(gDef[3])}
+      else if(eqd){gSt.sat=Math.max(0,gSt.sat-hun(gid));if(gSt.sat===0)hungry.push(gDef[3])}
+    });
+    if(cr.use){d.cic=1;if(D.gu.cicada){D.gu.cicada.sat=0;D.gu.cicada.cd=10}setTimeout(()=>toast('🦗 زنجرهٔ بهار و پاییز زمان را بازگرداند و انحراف چی خنثی شد؛ گو ۱۰ روز در نقاهت است'),1500)}
+    const dk=Object.keys(D.days).find(k=>D.days[k]===d);
+    if(dk&&cr.devK.includes(dk)){d.devWipe=1;const wp=coinsOf();D.coins0-=wp;setTimeout(()=>toast('🌀 انحراف چی! سلامت اراده به صفر رسید و ۱۰۰٪ سنگ‌های اولیه موجود در روزنه نابود شد!'),1800)}
+    if(recov.length)setTimeout(()=>toast('🦗 دوران نقاهت زنجره بهار و پاییز به پایان رسید؛ اکنون باید آن را تغذیه کنی!'),3000);
+    if(hungry.length)setTimeout(()=>toast('🩸 در حال احتضار (مهلت ۱ روز)! '+hungry.join('، ')+' — باف از کار افتاد؛ با غذا یا احیا نجاتش بده'),1200);
+    if(dead.length)setTimeout(()=>toast('☠️ مرگ دائمی! '+dead.join('، ')+' برای همیشه از دست رفت'),2400);
+  }
+}
+
+/* ================= Daily Sect Bounties ================= */
+// Fix 6: b_gate checks gate(d).open instead of just c.ok
+const BTY_POOL=[
+  ['b_t2','شکارچی تمرکز','تکمیل حداقل ۲ پومودورو با تایمر در امروز',40,15,c=>c.tmCount>=2,c=>Math.min(2,c.tmCount)+'/2'],
+  ['b_m90','تهذیب عمیق','ثبت حداقل ۹۰ دقیقه زمان تایمر در امروز',60,20,c=>c.tm>=90,c=>Math.min(90,c.tm)+'/90m'],
+  ['b_wake','سپیده‌دم هوشیار','تیک زدن تسک بیداری (w) و حداقل ۱ جلسه تایمر',(c,d)=>('w' in d.done)&&c.tmCount>=1?50:0,15,(c,d)=>('w' in d.done)&&c.tmCount>=1,(c,d)=>(('w' in d.done)?1:0)+c.tmCount+'/2'],
+  ['b_all','توازن سه‌گانه','فعالیت معتبر تایمردار در حداقل ۲ حوزه تخصصی در امروز',55,18,c=>c.doms.size>=2,c=>Math.min(2,c.doms.size)+'/2'],
+  ['b_gate','گشاینده دروازه','باز کردن کامل دروازه دوپامین در امروز',70,25,(c,d)=>{const g=gate(d);return !!(g&&g.open)},(c,d)=>{const g=gate(d);return g&&g.open?'1/1':'0/1'}]
+];
+function dayBounties(k){
+  const h=k.split('').reduce((a,c)=>a*31+c.charCodeAt(0),7);
+  const i1=Math.abs(h)%BTY_POOL.length,i2=(i1+2)%BTY_POOL.length;
+  return [BTY_POOL[i1],BTY_POOL[i2]];
+}
+
+// Fix 1: Per-week target calculation based on each day's own snapshot/template so changing default template doesn't alter past weeks
+const sumD=f=>closedKeys().reduce((a,k)=>a+f(D.days[k]),0);
+const wkS=k=>{const x=new Date(k+'T12:00:00');x.setDate(x.getDate()-(x.getDay()+1)%7);return x.getFullYear()+'-'+p2(x.getMonth()+1)+'-'+p2(x.getDate())};
+const dayPer=d=>tp(d).tasks.filter(t=>t.dom).reduce((a,t)=>a+(t.m||0),0);
+function wkTarget(w){
+  if(D.wkTargets&&D.wkTargets[w]!=null)return D.wkTargets[w];
+  if(!D.wkTargets)D.wkTargets={};
+  const ks=Object.keys(D.days).filter(k=>wkS(k)==w&&D.days[k].mode!='rest');
+  const avg=ks.length?ks.reduce((a,k)=>a+dayPer(D.days[k]),0)/ks.length:dayPer(cd()||{tpl:D.tpl});
+  const v=Math.max(200,Math.round(.7*5*avg/10)*10);D.wkTargets[w]=v;return v;
+}
+let WB=1000;function wbCalc(){WB=wkTarget(wkS(D.cur))}
+const boss=()=>{const m={};closedKeys().forEach(k=>{const w=wkS(k);m[w]=(m[w]||0)+calc(D.days[k]).tm});return Object.keys(m).filter(w=>m[w]>=wkTarget(w)).length};
+
+// Fix 5a: Leaving bed time empty on a closed active day applies -10 HP half-penalty
+function hpCalc(ld){
+  let h=100,dev=0,cic=!!ld&&hasGu('cicada'),cur=null,curK=null,use=null;const devK=[];
+  const ap=x=>{
+    h=Math.min(100,h+x);
+    if(h<=0){
+      if(cur&&cur.cic){h=60}else if(cic&&cur===ld){cic=0;h=60;use=cur}
+      else{dev++;h=30;if(curK&&!devK.includes(curK))devK.push(curK)}
+    }
+  };
+  closedKeys().forEach(k=>{
+    const d=D.days[k];if(d.st=='rest')return;cur=d;curK=k;
+    const gh=d.gHp||{jade:+hasGu('jade'),blood:+hasGu('blood'),cleanse:+hasGu('cleanse'),breeze:0},j=gh.jade;
+    if(d.st=='ok')ap(10+(gh.blood?12:0)+(gh.cleanse?10:0));
+    if(gh.breeze)ap(8);
+    if(d.bed)ap(bedOk(d)?10:(j?-12:-25));else ap(-15);
+    if(d.st=='part')ap(calc(d).n?(j?-5:-10):(j?-12:-25));
+  });
+  return{h:Math.max(0,Math.min(100,h-(D.hpPen||0))),dev,use,devK};
+}
+const btyTotals=()=>{let x=0,c=0;Object.keys(D.bty).forEach(k=>{const idx=+k.slice(-1),b=dayBounties(k.slice(1,11))[idx];if(b){const q=D.bty[k]==2?2:1;x+=q*(typeof b[3]=='function'?50:b[3]);c+=q*b[4]}});return{x,c}};
+const guSpent=()=>Object.values(D.gu).reduce((a,g)=>a+(g.cost||0),0);
+const xpOf=()=>Math.max(0,D.xp0+sumD(d=>d.xp)+boss()*400+btyTotals().x);
+const coinsOf=()=>Math.max(0,D.coins0+sumD(d=>d.coins)+boss()*250+btyTotals().c+Object.keys(D.ach).reduce((a,i)=>a+(AC.find(x=>x[0]==i)||[0,0,0,0,0,0,0])[6],0)-Object.values(D.inv).reduce((a,b)=>a+b,0)-guSpent());
+const pend=()=>{const d=cd();if(d.closed)return{xp:0,co:0};const c=calc(d);return{xp:Math.round(c.xp*(c.ok?sbm(1):1))+(c.ok?okB().x:0),co:d.mode=='rest'?0:c.co+(c.ok?10+okB().co:0)}};
+const rkRaw=x=>TH.reduce((a,t,i)=>x>=t?i:a,0),rk=x=>Math.min(rkRaw(x),Math.max(0,D.asc|0));
+
+// Fix 5b: Break streak if there is a calendar gap (>1 day) between consecutive closed days
+function streak(){
+  let s=0,prev=D.cur;
+  for(const k of closedKeys().reverse()){
+    const gap=Math.round((Date.parse(prev+'T12:00:00')-Date.parse(k+'T12:00:00'))/864e5);
+    if(gap>(prev===D.cur&&!D.days[D.cur]?.closed?1:0))break;
+    const d=D.days[k];
+    if(d.devWipe)break;
+    if(d.st=='ok')s++;
+    else if(d.st=='part')break;
+    prev=lday(Date.parse(k+'T12:00:00')-864e5);
+  }
+  return s;
+}
+const dur=d=>d.bed&&d.wake?(mm(d.wake)-mm(d.bed)+1440)%1440/60:null;
+const bedOk=d=>{const lg=d.toks&&d.toks.league?45*d.toks.league:0,sid=Object.keys(d.ov||{}).find(k=>k=='s'||((tasks(d).find(t=>t.id==k))||{}).k=='s'),tb=(((sid?mm(d.ov[sid])+lg:1530-PH[d.ph][2]+lg)%1440)+1440)%1440;let x=Math.abs(mm(d.bed)-tb);return Math.min(x,1440-x)<=30};
+function slp(){const a=wk(7).map(k=>D.days[k]).filter(Boolean),h=a.map(dur).filter(x=>x!==null),b=a.filter(d=>d.bed).map(bedOk);return{avg:h.length?h.reduce((x,y)=>x+y)/h.length:0,pc:b.length?Math.round(b.filter(Boolean).length/b.length*100):null}}
+function stats(){const s={s:0,okd:0,tr:{d:0,u:0,e:0},prac:0,bal:0,w5:0,cb:0},act=[];let last=null;
+  closedKeys().forEach(k=>{const d=D.days[k],c=calc(d);s.s+=c.n;Object.keys(c.tr).forEach(x=>s.tr[x]=(s.tr[x]||0)+c.tr[x]);s.prac+=['d1','d2'].filter(i=>i in d.done).length;
+    if(d.st=='ok'){s.okd++;if(c.doms.size>=3)s.bal=1;if(last&&(Date.parse(k)-Date.parse(last))/864e5>=4)s.cb=1;last=k}if(d.st!='rest')act.push(d.st=='ok'?1:0)});
+  for(let i=0;i+7<=act.length;i++)s.w5=Math.max(s.w5,act.slice(i,i+7).reduce((a,b)=>a+b,0));return s}
+function chkAch(){const s=stats();AC.forEach(a=>{if(!D.ach[a[0]]&&a[5](s)>=a[4]){D.ach[a[0]]=lday();toast('🏆 دستاورد جدید: '+a[1]);snd('lvl')}})}
+const ensureSnap=d=>{if(d&&!d.snap&&!d.closed){const t=D.templates.find(x=>x.id==d.tpl)||D.templates[0];if(t)d.snap=JSON.parse(JSON.stringify({id:t.id,n:t.n,gate:t.gate,tasks:t.tasks}))}};
+function ensureDay(){const k=lday(),c=D.days[D.cur];if(c&&(D.cur>=k||!c.closed)){ensureSnap(c);return false}if(!D.days[k]){D.days[k]=newDay(D,D.next);D.next={}}D.cur=k;ensureSnap(D.days[k]);gPrev=null;return true}
+const sugg=()=>{if(D.tpl!='re'||D.set.sug)return false;const a=closedKeys().filter(k=>D.days[k].st!='rest').slice(-7);return a.length>=7&&a.filter(k=>D.days[k].st=='ok').length>=5};
+
+/* ================= sound, Loud Pomodoro Alarm & Brown Noise ================= */
+let AX;const SND={tick:[[880,.14],[1320,.2]],done:[[523,.22],[659,.22],[784,.22],[1047,.55]],unlock:[[392,.16,'triangle'],[523,.16,'triangle'],[659,.16,'triangle'],[784,.16,'triangle'],[1047,.65,'triangle']],lvl:[[523,.16,'square'],[659,.16,'square'],[784,.16,'square'],[1047,.22,'square'],[1319,.75,'square']]};
+function snd(k){try{AX=AX||new(window.AudioContext||window.webkitAudioContext)();if(AX.resume)AX.resume();let t=AX.currentTime;SND[k].forEach(([f,d,ty])=>{const o=AX.createOscillator(),g=AX.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AX.destination);o.start(t);o.stop(t+d);t+=d*.7})}catch(e){}}
+
+// Powerful, long (4.5s) 3-wave harmonic alarm for Pomodoro completion
+function alarmSnd(){
+  try{
+    AX=AX||new(window.AudioContext||window.webkitAudioContext)();
+    if(AX.resume)AX.resume();
+    const now=AX.currentTime;
+    const notes=[
+      [523.25,0,.35],[659.25,.28,.35],[783.99,.56,.35],[1046.5,.84,.65],
+      [587.33,1.6,.35],[783.99,1.88,.35],[987.77,2.16,.35],[1174.66,2.44,.65],
+      [659.25,3.0,.3],[783.99,3.25,.3],[1046.5,3.5,.35],[1318.5,3.8,.6]
+    ];
+    notes.forEach(([freq,start,dur])=>{
+      ['sawtooth','triangle'].forEach((type,idx)=>{
+        const o=AX.createOscillator(),g=AX.createGain();
+        o.type=type;
+        o.frequency.setValueAtTime(idx?freq*1.002:freq,now+start);
+        g.gain.setValueAtTime(.0001,now+start);
+        g.gain.linearRampToValueAtTime(idx?.35:.45,now+start+.03);
+        g.gain.setValueAtTime(idx?.3:.38,now+start+dur*.6);
+        g.gain.exponentialRampToValueAtTime(.0001,now+start+dur);
+        o.connect(g);g.connect(AX.destination);
+        o.start(now+start);o.stop(now+start+dur+.02);
+      });
+    });
+  }catch(e){}
+}
+
+const BN={n:0};
+function bnStop(){if(BN.n){try{BN.n.stop();BN.n.disconnect()}catch(e){}BN.n=0}}
+function bnToggle(){try{AX=AX||new(window.AudioContext||window.webkitAudioContext)();if(AX.resume)AX.resume();if(BN.n)bnStop();else{const b=AX.createBuffer(1,AX.sampleRate*4,AX.sampleRate),a=b.getChannelData(0);let l=0;for(let i=0;i<a.length;i++){l=(l+.02*(Math.random()*2-1))/1.02;a[i]=l*3.5}const n=AX.createBufferSource(),g=AX.createGain();n.buffer=b;n.loop=true;g.gain.value=.2;n.connect(g);g.connect(AX.destination);n.start();BN.n=n}}catch(e){}TMR.draw()}
+function toast(t){const e=$('ts');e.textContent=t;e.style.opacity=1;clearTimeout(toast.h);toast.h=setTimeout(()=>e.style.opacity=0,3200)}
+
+/* ================= timer (Date.now + Shared Material Drop) ================= */
+const TTL=document.title;
+function inhRoll(t){if(!t.br&&t.total>=2700&&!t.ds&&Math.random()<.05){D.inh=Math.min(99,(D.inh||0)+1);return' · 🗝️ تکه نقشه میراث راستین!'}return''}
+function dropMats(m,f){
+  if(m<15)return'';
+  const rk=rollMat(f||m),qty=(m>=45&&Math.random()<.4?2:1)+(m>=45&&hasGu('dragon')?1:0);
+  D.mats[rk]=(D.mats[rk]||0)+qty;
+  return ` · دراپ: +${fa(qty)} ${MATS[rk][0]} ${MATS[rk][1]}`;
+}
+const TMR={iv:0,offer:0,
+loop(){clearInterval(TMR.iv);if(D.tm&&D.tm.run)TMR.iv=setInterval(TMR.tick,500)},
+left(){const t=D.tm;if(t&&t.run)t.left=Math.max(0,Math.ceil((t.end-Date.now())/1000))},
+nm(t){return t.br?'استراحت':t.n||'جلسه'},
+start(id){const d=cd(),k=tasks(d).find(x=>x.id==id);if(!k||!k.m||d.closed||(D.tm&&!confirm('تایمر فعال جایگزین شود؟')))return;const s=k.m*60;D.tm={id,day:D.cur,total:s,left:s,end:Date.now()+s*1000,run:1,br:0,n:k.n,ds:0};TMR.offer=0;TMR.loop();save();render();snd('tick')},
+rest(){const s=600;D.tm={id:'',day:D.cur,total:s,left:s,end:Date.now()+s*1000,run:1,br:1,n:'استراحت',ds:0};TMR.offer=0;TMR.loop();save();TMR.draw();snd('tick')},
+tick(){if(!D.tm||!D.tm.run)return;TMR.left();TMR.paint();if(!D.tm.left)TMR.fin(1)},
+pz(){const t=D.tm;if(!t)return;if(t.run){TMR.left();t.run=0}else{t.end=Date.now()+t.left*1000;t.run=1}TMR.loop();save();TMR.draw()},
+fin(auto){
+  const t=D.tm;if(!t)return;TMR.left();
+  const d=D.days[t.day],m0=auto?Math.round(t.total/60):Math.max(1,Math.floor((t.total-t.left)/60)),m=t.br?m0:Math.max(1,Math.round(m0*(1-Math.min(.4,(hasGu('cleanse')?0:(t.ds||0))*.1))));
+  const rec=!t.br&&d&&!d.closed&&d.mode!='rest';if(rec&&!(t.id in d.done))d.done[t.id]=m;
+  const wasBr=t.br;
+  D.tm=null;bnStop();TMR.offer=wasBr?0:1;TMR.loop();
+  let dropMsg=t.ds&&!t.br&&!hasGu('cleanse')?' · 🌀 انحراف توجه ×'+fa(t.ds)+' (−'+fa(Math.min(40,t.ds*10))+'٪)':'';
+  if(rec)dropMsg+=dropMats(m);
+  if(auto&&rec)dropMsg+=inhRoll(t);
+  save();
+  if(auto){
+    alarmSnd();
+    toast(wasBr?'☕ استراحت تمام شد':(rec?'✅ تایمر تمام شد و جلسه ثبت شد':'⏱️ تایمر تمام شد؛ روز بسته یا آزاد است و جلسه ثبت نشد')+dropMsg);
+    if(D.set.notif&&window.Notification&&Notification.permission=='granted')new Notification('تایمر تمام شد',{body:TMR.nm(t)+dropMsg});
+  }else{
+    snd('done');
+    if(dropMsg)toast('✅ جلسه ثبت شد'+dropMsg);
+  }
+  render();
+},
+cancel(){D.tm=null;bnStop();TMR.offer=0;TMR.loop();save();render()},
+restore(){
+  const t=D.tm;if(!t)return;
+  if(t.run&&t.end<=Date.now()){
+    const d=D.days[t.day];
+    if(!t.br&&d&&!d.closed&&d.mode!='rest'&&!(t.id in d.done)&&confirm('تایمر «'+TMR.nm(t)+'» در غیاب تو تمام شد. جلسه ثبت شود؟')){
+      const m=Math.max(1,Math.round(Math.round(t.total/60)*(1-Math.min(.4,(hasGu('cleanse')?0:(t.ds||0))*.1))));
+      d.done[t.id]=m;
+      const dm=dropMats(m)+inhRoll(t);
+      setTimeout(()=>toast('✅ جلسه ثبت شد'+dm),300);
+    }
+    D.tm=null;save();
+  }else TMR.loop();
+},
+paint(){const t=D.tm;if(!t)return;if($('tt')){$('tt').textContent=fa(p2(Math.floor(t.left/60))+':'+p2(t.left%60));$('tb').style.width=(100-t.left/t.total*100)+'%'}document.title=(t.run?(t.br?'☕ ':'⏳ '):'⏸ ')+p2(Math.floor(t.left/60))+':'+p2(t.left%60)+' - '+TMR.nm(t)},
+draw(){const w=$('tw'),t=D.tm,bn=`<button class="btn ${BN.n?'btn-p':''}" data-a="brown">🎧 صدای تمرکز (Brown Noise) ${BN.n?'■':''}</button>`;
+  if(!t){document.title=TTL;if(!TMR.offer){w.classList.add('hidden');return}w.classList.remove('hidden');w.innerHTML=`<div class="flex flex-wrap items-center gap-2"><div class="flex-1 text-sm font-semibold text-emerald-300">✅ پومودورو ثبت شد</div><button class="btn btn-p" data-a="rest">☕ شروع استراحت (۱۰ دقیقه)</button>${bn}<button class="btn" data-a="odis">✖</button></div>`;return}
+  w.classList.remove('hidden');w.innerHTML=`<div class="flex items-center gap-2"><div id="tt" class="text-3xl font-extrabold text-amber-300 tabular-nums"></div><div class="flex-1 min-w-0 text-xs text-slate-300 truncate">${esc(TMR.nm(t))}</div><button class="btn" data-a="pz">${t.run?'⏸':'▶'}</button><button class="btn text-emerald-300" data-a="tfin" title="ثبت">✔</button><button class="btn text-rose-300" data-a="tcancel" title="لغو">✖</button></div><div class="bar mt-2"><i id="tb" class="xp" style="width:0"></i></div><div class="mt-2">${bn}</div>`;TMR.left();TMR.paint()}};
+
+/* ================= views ================= */
+const V={};
+const tile=(i,v,l)=>`<div class="g p-3 text-center"><div>${i}</div><div class="font-extrabold text-amber-300">${fa(v)}</div><div class="text-[11px] text-slate-400">${l}</div></div>`;
+const bars=(v,l,c)=>{const m=Math.max(1,...v);return `<div class="flex items-end gap-1.5 h-28">${v.map((x,i)=>`<div class="flex-1 flex flex-col items-center justify-end h-full"><span class="text-[10px]">${fa(Math.round(x*10)/10)}</span><div class="w-full rounded-t" style="height:${x/m*70}%;background:${c};min-height:2px"></div><span class="text-[10px] text-slate-400">${l[i]}</span></div>`).join('')}</div>`};
+const hd=(ic,t)=>`<h2 class="font-extrabold text-amber-300 flex items-center gap-2 mb-2"><i data-lucide="${ic}" class="w-5 h-5"></i>${t}</h2>`;
+
+const MOT=['زمان تنها منبعی است که هیچ گویی آن را بازنمی‌گرداند.','کرمی که غذا نگیرد، قدرتی هم نمی‌دهد.','تنگنا برای کسی است که جوهره‌اش لبریز شده؛ بشکنش.','هر جلسهٔ تمرکز، یک قطره جوهره به روزنه.','انزوای امروز، رتبهٔ فرداست.','بی‌انضباطی گران‌ترین گو است.'],
+mot=()=>`<div class="text-center text-xs italic text-amber-200/70">«${MOT[new Date(Date.now()-144e5).getDate()%MOT.length]}»</div>`,
+asc=()=>{const a=Math.max(0,D.asc|0);if(a>=8)return'';const x=xpOf();if(rkRaw(x)<=a)return rkRaw(x+pend().xp)>a?`<section class="g p-4 border-rose-400/60 text-xs text-amber-200">⛓️ ذات امروزت آماده است؛ ابتدا پرونده امروز را ببند تا مصیبت آسمانی آغاز شود</section>`:'';const nd=ndOf(a),s=streak(),oa=okAt(a),hp=hpCalc().h,cost=(a+1)*150,ok=s>=nd&&oa>=nd&&hp>=70&&coinsOf()>=cost&&!cd().closed;return `<section class="g p-4 border-rose-400/60 space-y-2"><div class="font-extrabold text-rose-300">⛓️ تنگنای رتبه؛ مصیبت آسمانی در راه است</div><div class="text-xs text-slate-300">برای گذر از «${R[a][0]}»: ${fa(nd)} روز موفق پشت‌سرهم (فعلی: ${fa(s)}) · ${fa(nd)} روز موفق در همین رنک (فعلی: ${fa(oa)}) · سلامت اراده ≥ ۷۰ (فعلی: ${fa(hp)}) · هزینه ${fa(cost)} 🔷. پاداش: +۱ ☄️</div><button class="btn btn-p" data-a="asc" ${ok?'':'disabled'}>🌩️ آغاز مصیبت آسمانی</button>${cd().closed?'<div class="text-[11px] text-amber-300">🔒 پروندهٔ امروز بسته است؛ مصیبت از روز بعد (یا با Reopen) قابل آغاز است</div>':''}</section>`};
+const hud=()=>{const d=cd();if(d.closed||d.mode=='rest')return'';const n=new Date(),nk=(n.getHours()*60+n.getMinutes()-240+1440)%1440,K=t=>(at(t,d)-240+1440)%1440,g=gate(d),
+ p=tasks(d).filter(t=>!(t.id in d.done)&&!(t.k=='g'&&g&&!g.open)).sort((a,b)=>K(a)-K(b)),c=p.find(t=>t.dom)||p[0];
+ if(!c)return'<section class="g p-4 text-sm text-emerald-300">🏁 همهٔ کوئست‌های در دسترس امروز تمام شد؛ برو «بستن پرونده امروز».</section>';
+ return `<section class="g p-4 border-amber-400/60"><div class="text-xs text-slate-400">${K(c)<=nk?'⚔️ کوئست فعلی':'⏭️ کوئست بعدی · '+fa(hm(at(c,d)))}</div><div class="font-extrabold text-lg">${esc(c.n)}${c.m?' · '+fa(c.m)+' دقیقه':''}</div>${c.m?`<button class="btn btn-p mt-2" data-a="start" data-v="${c.id}">▶ شروع تایمر همین الان</button>`:`<button class="btn btn-p mt-2" data-a="tog" data-v="${c.id}">✓ انجام شد</button>`}</section>`};
+const hpBoss=()=>{const h=hpCalc(),w=wkS(D.cur);let m=0;Object.keys(D.days).forEach(k=>{if(wkS(k)==w)m+=calc(D.days[k]).tm});const p=Math.min(100,m/WB*100);
+  return `<section class="g p-4 space-y-3"><div><div class="flex justify-between text-xs mb-1"><span class="text-emerald-300 flex items-center gap-1"><i data-lucide="heart-pulse" class="w-3.5 h-3.5"></i> سلامت اراده (Willpower HP)</span><span>${fa(h.h)}/۱۰۰${h.dev?' · انحراف چی ×'+fa(h.dev):''}${D.gu.cicada&&D.gu.cicada.cd>0?' · 🍂 زنجره در نقاهت ('+fa(D.gu.cicada.cd)+' روز)':''}</span></div><div class="bar"><i class="hp" data-w="${h.h}" style="width:0;${h.h<35?'background:#ef4444':''}"></i></div><div class="text-[11px] text-slate-400 mt-1">روز موفق +۱۰ · خواب به‌موقع +۱۰ · دیر خوابیدن ${hasGu('jade')?'−۱۲':'−۲۵'} · روز ناقص بدون جلسه ${hasGu('jade')?'−۱۲':'−۲۵'} · روز ناقص با فعالیت ${hasGu('jade')?'−۵':'−۱۰'} · عدم ثبت ساعت خواب −۱۵ · صفر شدن HP = انحراف چی: نابودی ۱۰۰٪ سنگ‌های اولیه</div></div>
+  <div><div class="flex justify-between text-xs mb-1"><span class="text-amber-300">⚡ آزمون آسمانی هفتگی (Weekly Tribulation)</span><span>${fa(Math.round(m))}/${fa(WB)} دقیقه</span></div><div class="bar"><i class="xp" data-w="${p}" style="width:0"></i></div><div class="text-[11px] text-slate-400 mt-1">پاداش پیروزی: +۴۰۰ XP و +۲۵۰ 🔷 · هفته‌های پیروز: ${fa(boss())}</div></div></section>`};
+
+V.home=()=>{
+  const d=cd(),pd=pend(),x=xpOf()+pd.xp,i=rk(x),nx=TH[i+1],pct=nx?Math.min(100,(x-TH[i])/(nx-TH[i])*100):100,col=R[i][2],fr=eqo('f'),au=eqo('au'),av=eqo('v'),ti=eqo('t'),c=calc(d),sl=slp();
+  const eqGus=D.guEq.map(gid=>{const g=GUS.find(z=>z[0]==gid),st=D.gu[gid];return g&&st?`<span class="text-xs px-2 py-1 rounded-lg bg-slate-900/80 border ${st.sat>0?'border-amber-400/40 text-amber-200':'border-rose-500/50 text-rose-300'}">${g[9]} ${esc(g[3])} (${st.sat>0?fa(st.sat)+'٪':'💀 پژمرده'})</span>`:''}).join('');
+  return `<section class="g p-5 ${lvFx?'unlock':''}" style="box-shadow:0 0 30px ${au?au[9]:col}44"><div class="flex items-center gap-4"><div class="w-20 h-20 shrink-0 rounded-2xl border-4 flex items-center justify-center text-4xl bg-slate-900/70" style="border-color:${fr?fr[9]:col};box-shadow:0 0 24px ${col}88">${av?av[8]:R[i][3]}</div><div class="min-w-0 flex-1"><div class="text-xl font-extrabold" style="color:${col}">رنک ${fa(i+1)}: ${R[i][0]} / ${R[i][1]}</div><div class="text-xs text-slate-300">Level ${fa(Math.floor(x/300)+1)}${ti?' · «'+esc(ti[3])+'»':''}</div><div class="text-xs text-slate-400">${fr?esc(fr[3]):'بدون قاب'}${au?' · '+esc(au[3]):''}</div></div></div>
+  <div class="mt-4"><div class="flex justify-between text-xs mb-1"><span>XP: ${fa(Math.round(x))}</span><span>${nx?fa(Math.max(0,Math.round(nx-x)))+' تا رنک بعد':'MAX'}</span></div><div class="bar"><i class="xp" data-w="${pct}" style="width:0"></i></div></div>
+  <div class="mt-3 pt-3 border-t border-slate-700/50 flex flex-wrap items-center gap-1.5"><span class="text-xs text-slate-400">روزنه آغازین (${fa(D.guEq.length)}/۳ گو):</span>${eqGus||'<span class="text-xs text-slate-500">هیچ کرم گویی تجهیز نشده است</span>'}</div></section>
+  ${mot()}${hud()}${asc()}${hpBoss()}
+  ${fmBanner()}<div class="grid grid-cols-2 sm:grid-cols-4 gap-2">${tile('🔥',streak(),'Active-day Streak')}${tile('🦋',Object.keys(D.gu).length+'/'+GUS.length,'کرم‌های گو')}${tile('🔷',coinsOf()+(pd.co?' (+'+pd.co+')':''),'سنگ اولیه')}${tile('🌿',Object.values(D.mats).reduce((a,b)=>a+b,0),'مواد پالایش')}</div>
+  <section class="g p-4">${hd('sun','امروز · '+dFa(D.cur))}<div class="text-sm space-y-1"><div>حالت: ${d.mode=='rest'?'روز آزاد':esc(tp(d).n)}${d.closed?' · بسته شده':''}</div><div>جلسات تخصصی: ${fa(c.n)}/${fa(c.tot)} · زمان تایمر: ${fa(c.tm)} دقیقه (کمبو: ${fa(c.tmCount)}×)</div><div>در انتظار بسته شدن روز: +${fa(pd.xp)} XP · +${fa(pd.co)} 🔷</div></div><div class="flex flex-wrap gap-2 mt-3"><button class="btn btn-p" data-a="tab" data-v="tasks">⚔️ رفتن به تسک‌های امروز</button><button class="btn" data-a="tab" data-v="ap">🔥 روزنه و دیگ پالایش گو</button></div></section>
+  <section class="g p-4">${hd('moon','Sleep Consistency (۷ روز اخیر)')}<div class="text-sm">${sl.pc===null?'هنوز ساعت خوابی ثبت نشده.':'پایبندی به ساعت خواب: '+fa(sl.pc)+'٪'}${sl.avg?' · میانگین خواب: '+fa(sl.avg.toFixed(1))+' ساعت':''}</div></section>`;
+};
+
+V.tasks=()=>{
+  const d=cd(),dis=d.closed?'disabled':'',L=tasks(d),g=gate(d),c=calc(d),op=(a,b,x)=>`<option value="${a}" ${x?'selected':''}>${b}</option>`;
+  const inp=(f,k,j,v,ph,x)=>`<input data-f="${f}" data-c="${k}" data-i="${j}" placeholder="${esc(ph)}" value="${esc(v)}" ${x||''}>`;
+  const mis=D.domains.map(x=>`<div class="space-y-1"><div class="text-xs font-semibold" style="color:${x.c}">${esc(x.n)}</div>${x.f.map((l,j)=>inp('mis',x.id,j,(d.mis[x.id]||[])[j]||'',l,dis)).join('')}<input data-f="out" data-c="${x.id}" placeholder="خروجی واقعی امروز" value="${esc(d.out[x.id]||'')}" ${dis}></div>`).join('');
+  const nxt=D.domains.map(x=>`<div class="space-y-1"><div class="text-xs font-semibold" style="color:${x.c}">${esc(x.n)} فردا</div>${x.f.map((l,j)=>inp('nx',x.id,j,(D.next[x.id]||[])[j]||'',l)).join('')}</div>`).join('');
+  const row=t=>{
+    const dn=t.id in d.done,tg=t.dom&&(d.mis[t.dom]||[])[0],isManual=dn&&t.m>0&&!d.done[t.id];
+    const dispXp=isManual?Math.round(t.x*0.2):t.x;
+    return `<div class="task g p-3 flex items-center gap-3 ${dn?'done':''}"><button class="chk ${dn?'on':''}" data-a="tog" data-v="${t.id}" ${dis} aria-label="تیک">${dn?'✓':''}</button><div class="flex-1 min-w-0"><div class="text-xs"><button class="text-amber-300 underline decoration-dotted" data-a="ovt" data-v="${t.id}" ${dis}>${fa(hm(at(t,d)))}</button>${d.ov[t.id]?' <span class="text-slate-400">(تغییر امروز)</span>':''}${d.extra.some(e=>e.id==t.id)?` <button data-a="xdel" data-v="${t.id}" ${dis}>✖</button>`:''}</div><div class="${dn?'line-through':''}">${t.dom?`<span class="inline-block w-2 h-2 rounded-full mx-1" style="background:${dm(t.dom).c}"></span>`:''}${esc(t.n)}${t.m?' · '+fa(t.m)+' دقیقه':''}</div>${tg?`<span class="tag">🎯 ${esc(tg)}</span>`:''}${dn&&t.m>0?`<div class="text-xs ${d.done[t.id]?'text-emerald-300':'text-amber-300'}">${d.done[t.id]?'✓ تایمر: '+fa(d.done[t.id])+' دقیقه (پاداش متناسب با زمان واقعی)':'⚠️ تیک دستی بدون تایمر (۲۰٪ XP و بدون سنگ)'}</div>`:''}</div>${dispXp?`<span class="text-xs text-violet-300">+${fa(dispXp)} XP</span>`:''}${!isManual&&t.co>0?`<span class="text-xs text-sky-300">+${fa(t.co)} 🔷</span>`:''}${t.m&&!dn&&!d.closed?`<button class="btn-s" data-a="start" data-v="${t.id}">▶ تایمر</button>`:''}</div>`;
+  };
+  const pc=c.tot?Math.min(100,Math.round(c.n/c.tot*100)):0,mk=c.reqN>0&&c.tot?Math.min(100,c.reqN/c.tot*100):0,gg=c.g,
+    cond=(gg.n>0?fa(c.reqN)+' جلسه':'')+(gg.n>0&&gg.m>0?' یا ':'')+(gg.m>0?fa(gg.m)+' دقیقه تمرکز':'')+(!gg.n&&!gg.m?'حداقل ۱ جلسه':'')+(gg.all?' + حداقل ۱ جلسه تایمردار از هر حوزهٔ فعال':'')+(gg.h?' + ساعت '+fa(gg.h)+':۰۰':''),
+    rem=[gg.n>0?fa(Math.max(0,c.reqN-c.vn))+' جلسه':'',gg.m>0?fa(Math.max(0,gg.m-c.tm))+' دقیقه':''].filter(Boolean).join(' یا ');
+  const dist=!g?'':g.open?'🔓 دروازه باز است':'🔒 تا دروازه: '+(rem||'تکمیل شرط‌ها');
+  const gtxt=!g?'':g.open?'🔓 دروازه دوپامین باز است؛ تفریح و ناول در زمان تعیین‌شده.':`🔒 دروازه دوپامین قفل است! شرط: ${cond} (الان ${fa(c.vn)} جلسهٔ تایمردار · ${fa(c.tm)} دقیقه).`;
+  const nl=L.filter(t=>t.k=='n'),gl=L.filter(t=>t.k=='g'),sl=L.filter(t=>t.k=='s');
+  const bts=dayBounties(D.cur).map((b,idx)=>{
+    const key='d'+D.cur+'_'+idx,claimed=D.bty[key],ok=b[5](c,d),prog=b[6](c,d),xpVal=typeof b[3]=='function'?50:b[3];
+    return `<div class="g p-2.5 flex items-center justify-between gap-2 border ${claimed?'border-emerald-500/40 opacity-75':ok?'border-amber-400':'border-slate-700/60'}"><div class="min-w-0"><div class="text-xs font-bold text-amber-300">📜 ${b[1]} <span class="text-slate-400 font-normal">(${fa(prog)})</span></div><div class="text-[11px] text-slate-300">${b[2]} · پاداش: +${fa(xpVal)} XP و +${fa(b[4])} 🔷</div></div>${claimed?'<span class="text-xs text-emerald-300 font-bold">✓ دریافت شد</span>':ok?`<button class="btn-s" data-a="claimbty" data-v="${idx}">🎁 دریافت</button>`:'<span class="text-[11px] text-slate-500">در جریان</span>'}</div>`;
+  }).join('');
+  const tkBanners=[
+    d.byp?`<div class="text-xs text-amber-300 mt-1">🔓 طلسم شکاف دروازه فعال است (−${fa(d.byp*2)} جلسه)</div>`:'',
+    d.toks&&d.toks.league?`<div class="text-xs text-sky-300 mt-1">🎮 مجوز +${fa(d.toks.league*45)} دقیقه لیگ امشب فعال است (ساعت ناول شیفت یافت)</div>`:'',
+    d.toks&&d.toks.novel?`<div class="text-xs text-emerald-300 mt-1">📖 طومار مطالعه ۳ چپتر ناول روزانه برای امروز فعال است</div>`:'',
+    d.toks&&d.toks.feast?`<div class="text-xs text-rose-300 mt-1">🍔 ضیافت فانگ یوان امروز فعال است (+۱۵٪ سیری کرم‌های گو اعمال شد)</div>`:''
+  ].filter(Boolean).join('');
+
+  return `<section class="g p-4 space-y-3">${hd('calendar-days',dFa(D.cur)+(d.closed?' · 🔒 بسته شده':''))}<div class="grid grid-cols-2 gap-2"><label class="text-xs text-slate-400">تمپلیت امروز<select data-f="tsel" ${dis}>${D.templates.map(t=>op(t.id,esc(t.n),t.id==d.tpl)).join('')}</select></label><label class="text-xs text-slate-400">Sleep Shift<select data-f="phase">${PH.map((p,i)=>op(i,p[0],D.phase==i)).join('')}</select></label></div><div class="flex flex-wrap gap-2"><button class="btn ${d.mode=='rest'?'btn-p':''}" data-a="mode" data-v="${d.mode=='rest'?'n':'rest'}" ${dis}>🌿 روز آزاد / Social</button>${d.closed?'<button class="btn" data-a="reopen">✏️ اصلاح همین روز (با تأیید)</button>':''}</div><div class="text-xs text-slate-400">جلسات تخصصی: ${fa(c.n)}/${fa(c.tot)} · زمان تایمر: ${fa(c.tm)} دقیقه · کمبوی تایمر: ${fa(c.tmCount)}×</div></section>
+  ${d.mode=='rest'?'':`<section class="g p-3"><div class="flex justify-between text-xs mb-1"><span>پیشرفت امروز: ${fa(pc)}٪</span><span>${dist}</span></div><div class="bar relative"><i class="xp" data-w="${pc}" style="width:0"></i>${mk?`<b class="absolute top-0 bottom-0 w-0.5 bg-white/80" style="right:${mk}%"></b>`:''}</div></section>
+  <section class="space-y-1.5">${bts}</section>`}
+  <details class="g p-3"><summary class="font-semibold text-amber-300">🎯 Mission امروز و خروجی واقعی</summary><div class="space-y-3 mt-3">${mis}</div></details>
+  ${d.mode=='rest'?`<section class="g p-4 text-sm text-sky-200">🌿 امروز روز آزاد است؛ نه XP می‌گیری، نه Streak می‌شکند و نه کرم‌های گو گرسنه می‌شوند.<input class="mt-3" data-f="note" placeholder="دلیل (مهمانی، سفر، استراحت…)" value="${esc(d.note)}" ${dis}></section>`:`<section class="space-y-2">${nl.map(row).join('')}
+  <div class="g p-3 text-sm ${g&&g.open?'border-emerald-400/60 text-emerald-200':'border-rose-400/50 text-rose-200'} ${gFx?'unlock':''}">${gtxt}${tkBanners}<div class="text-[11px] text-slate-400 mt-1">فقط جلسات تایمردار (حداقل ۸۰٪ زمان) دروازه را باز می‌کنند. این دروازه یک قفل تعهد درونی است؛ بعد از باز کردنش قانون ساعت قطع بازی را حفظ کن.</div></div>
+  <div class="space-y-2 ${g&&!g.open?'lock':''}">${gl.map(row).join('')}</div>${sl.map(row).join('')}</section>
+  <details class="g p-3"><summary class="font-semibold text-amber-300">➕ افزودن تسک سریع برای امروز</summary><div class="grid grid-cols-2 gap-2 mt-3"><input id="qn" class="col-span-2" placeholder="نام تسک" maxlength="80"><label class="text-[11px] text-slate-400">ساعت<input id="qt" type="time" value="12:00"></label><label class="text-[11px] text-slate-400">تایمر (دقیقه)<input id="qm" type="number" min="0" max="600" value="30"></label><label class="text-[11px] text-slate-400">حوزه<select id="qd">${op('','بدون حوزه (عادت)',1)+D.domains.map(x=>op(x.id,esc(x.n),0)).join('')}</select></label><label class="text-[11px] text-slate-400">XP<input id="qx" type="number" min="0" value="30"></label><label class="text-[11px] text-slate-400">سنگ اولیه<input id="qc" type="number" min="0" value="4"></label><button class="btn btn-p self-end" data-a="qadd" ${dis}>افزودن</button></div></details>`}
+  <section class="g p-4 space-y-3">${hd('battery-medium','Energy، خواب و یادداشت')}<div class="flex gap-2">${[1,2,3,4,5].map(n=>`<button class="btn ${d.energy==n?'btn-p':''}" data-a="en" data-v="${n}" ${dis}>${fa(n)}</button>`).join('')}</div><div class="grid grid-cols-2 gap-2"><label class="text-xs">خواب دیشب<input type="time" data-f="bed" value="${d.bed}" ${dis}></label><label class="text-xs">بیداری امروز<input type="time" data-f="wake" value="${d.wake}" ${dis}></label></div>${d.mode!='rest'?`<input data-f="note" placeholder="یادداشت اختیاری" value="${esc(d.note)}" ${dis}>`:''}</section>
+  <details class="g p-3"><summary class="font-semibold text-amber-300">📜 Mission فردا</summary><div class="space-y-3 mt-3">${nxt}</div></details>
+  <button class="btn btn-p w-full py-3 font-extrabold" data-a="close" ${dis}>${d.closed?'✅ پرونده امروز بسته شده':'⚔️ بستن پرونده امروز و تغذیه کرم‌های گو (End Day)'}</button>`;
+};
+
+/* ================= Primeval Aperture & Gu Refinement View ================= */
+V.ap=()=>{
+  const d=cd(),c=calc(d);
+  const ownedGus=GUS.filter(g=>D.gu[g[0]]),Rc=rk(xpOf()+pend().xp)+1;
+  const guCards=ownedGus.map(g=>{
+    const id=g[0],st=D.gu[id],eq=D.guEq.includes(id),fedToday=g[10](d,c),alive=st.sat>0,feedCost=gcost(id,st);
+    return `<div class="g p-3.5 border-2 rar-${g[2]} space-y-2">
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2"><span class="text-3xl ${alive?'':'grayscale'}">${g[9]}</span><div><div class="font-bold text-sm">${esc(g[3])} <span class="text-xs text-amber-300">(رنک ${fa(g[1])})</span></div><div class="text-[11px] text-slate-400">${esc(g[4])}</div></div></div>
+        <span class="text-xs px-2 py-0.5 rounded-full ${alive?'bg-emerald-950 text-emerald-300':'bg-rose-950 text-rose-300 font-bold'}">${st.hib?'❄️ خواب زمستانی ('+fa(st.sat)+'٪)':st.cd>0?'🍂 در نقاهت ('+fa(st.cd)+' روز)':alive?'سیری: '+fa(st.sat)+'٪':'🩸 در حال احتضار (مهلت ۱ روز)'}</span>
+      </div>
+      <div class="bar"><i class="sat" data-w="${st.sat}" style="width:0;${!alive?'background:#f43f5e':''}"></i></div>
+      <div class="text-xs text-slate-200">${esc(g[5])}</div>
+      ${st.hib?'<div class="text-[11px] text-sky-300">❄️ بدون باف و بدون گرسنگی تا بیدار کردن</div>':st.cd>0?'<div class="text-[11px] text-amber-300">🍂 تا پایان نقاهت بدون باف، بدون گرسنگی و بدون خطر مرگ؛ پس از آن با سیری ۱۵٪ برمی‌گردد</div>':!eq&&alive?'<div class="text-[11px] text-slate-400">⚪ در روزنه تجهیز نیست (بدون مصرف غذا و بدون باف فعال)</div>':`<div class="text-[11px] ${fedToday?'text-emerald-300':'text-amber-300'}">${fedToday?'✓ غذای امروز تامین شده (+۳۰٪ هنگام بستن روز)':'⚠️ '+esc(g[6])+(alive?' (در صورت عدم تامین: −۳۵٪)':' — اگر امروز هم سیر نشود برای همیشه می‌میرد!')}</div>`}
+      <div class="flex gap-2 pt-1">
+        <button class="btn-s" data-a="gueq" data-v="${id}">${eq?'درآوردن از روزنه':st.hib?'بیدار کردن و تجهیز':'تجهیز در روزنه'}</button>
+        ${alive&&!st.hib?`<button class="btn text-xs" data-a="guhib" data-v="${id}">❄️ خواب زمستانی</button>`:''}
+        ${st.sat<100&&!st.hib&&!st.cd?`<button class="btn text-xs" data-a="gufeed" data-v="${id}">${alive?'🍖 تغذیه دستی ('+fa(feedCost)+' 🔷)':'⚡ احیای گو ('+fa(feedCost)+' 🔷 + ۱ 🩸)'}</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+
+  const tokCards=TOKENS.map(tk=>{
+    const cnt=D.tokens[tk[0]]||0;
+    return `<div class="g p-3 flex items-center justify-between gap-2"><div><div class="text-sm font-bold">${tk[5]} ${tk[1]} <span class="text-amber-300">×${fa(cnt)}</span></div><div class="text-xs text-slate-400">${tk[3]}</div></div><button class="btn-s" data-a="usetok" data-v="${tk[0]}" ${cnt>0&&tk[0]!='hib'?'':'disabled'}>${tk[0]=='hib'?'از کارت گو':'مصرف طومار'}</button></div>`;
+  }).join('');
+
+  return `<section class="g p-4 space-y-3">
+    ${hd('flame','روزنه آغازین (Primeval Aperture) — کرم‌های گوی فعال ('+fa(D.guEq.length)+'/۳)')}
+    <p class="text-xs text-slate-300">کرم‌های گوی مجهزشده به تو قدرت‌های پاسیو واقعی می‌دهند، اما هر شب هنگام بستن پرونده روز باید غذای مخصوصشان را با مطالعه و نظم تامین کرده باشی؛ وگرنه گرسنگی می‌کشند و در سیری ۰٪ پژمرده می‌شوند!</p>
+    ${fmBanner()}
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${guCards||'<div class="text-sm text-slate-400 col-span-2">هنوز هیچ کرم گویی نداری. از تب «بهشت زرد (فروشگاه)» یا دیگ پالایش پایین صفحه کرم گو به دست بیاور!</div>'}</div>
+  </section>
+
+  <section class="g p-4 space-y-3 border-violet-400/40">
+    ${hd('sparkles','دیگ پالایش گو (Gu Refinement Cauldron)')}
+    <div class="grid grid-cols-3 sm:grid-cols-5 gap-2 text-center">
+      ${Object.keys(MATS).map(k=>`<div class="g p-2"><div class="text-xl">${MATS[k][0]}</div><div class="text-xs font-bold" style="color:${MATS[k][3]}">${MATS[k][1]}</div><div class="text-sm font-extrabold text-amber-300">${fa(D.mats[k]||0)} عدد</div></div>`).join('')}
+    </div>
+    <div class="text-xs text-slate-300 flex justify-between"><span>شمارنده شانس قطعی (Pity): <b>${fa(D.pity)}/۱۰</b> (در ۱۰ پالایش فانی/استادی طلایی قطعی است)</span><span>موجودی: <b class="text-amber-300">${fa(coinsOf())} 🔷</b> · HP: <b>${fa(hpCalc().h)}</b></span></div>
+    <div class="bar"><i class="xp" data-w="${D.pity/10*100}" style="width:0"></i></div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">${[
+      ['⚗️ پالایش فانی','text-sky-300','۲ 🌿 + ۱ 💎 + ۸۰ 🔷','۱۵٪ طلایی · ۵۵٪ عادی (+۷۰ XP) · ۳۰٪ انفجار 💥'],
+      ['🔥 پالایش استادی','text-amber-300','۱ 🌿 + ۲ 🩸 + ۱ ❄️ + ۲۰۰ 🔷','۳۵٪ طلایی · ۴۵٪ عادی (+۱۵۰ XP) · ۲۰٪ انفجار 💥'],
+      ['🌌 پالایش جاودانه','text-fuchsia-300','۲ 🩸 + ۲ ❄️ + ۱ ☄️ + ۴۲۰ 🔷','۸۰٪ کشف گوی جاودانه · ۲۰٪ مقاومت بهشت']
+    ].map((c,i)=>{const[lo,hi]=tRange(i+1,Rc);return `<div class="g p-3 space-y-2"><div class="font-bold text-sm ${c[1]}">${c[0]}</div><div class="text-xs text-slate-300">هزینه: ${c[2]}</div><div class="text-[11px] text-slate-400">${c[3]}<br>گوهای قابل کشف: رنک ${fa(lo)} تا ${fa(hi)}</div><button class="btn btn-p w-full" data-a="refine" data-v="${i+1}">شروع</button></div>`}).join('')}</div>
+    <div class="g p-3 flex items-center justify-between gap-2 border-amber-400/40"><div><div class="text-sm font-bold">🗝️ تکه‌های نقشه میراث راستین: <span class="text-amber-300">${fa(D.inh||0)}/۳</span></div><div class="text-[11px] text-slate-400">با هر تایمر کامل ۴۵ دقیقه‌ای و بدون انحراف توجه، ۵٪ شانس پیدا کردن یک تکه</div></div><button class="btn-s" data-a="inh" ${(D.inh||0)>=3?'':'disabled'}>🏛️ گشودن غار میراث راستین ونرابل</button></div>
+  </section>
+
+  <section class="g p-4 space-y-2">
+    ${hd('ticket','طومارهای مصرفی بازار سیاه (در انبار تو)')}
+    <div class="space-y-2">${tokCards}</div>
+  </section>`;
+};
+
+V.fc=()=>{const d=cd(),dis=d.closed?'disabled':'',n=lday(),op=(a,b,x)=>`<option value="${a}" ${x?'selected':''}>${b}</option>`,doms=D.domains.map(x=>op(x.id,esc(x.n),0)).join(''),
+ L=D.topics.filter(t=>t.st<5).sort((a,b)=>a.due<b.due?-1:1),due=L.filter(t=>t.due<=n).length,cap=D.topics.filter(t=>t.lr==n).length;
+ return `<section class="g p-4 space-y-3">${hd('target','سنگر تهذیب (انزوای متمرکز)')}<div class="grid grid-cols-2 gap-2"><label class="text-xs text-slate-400">حوزه<select id="sd">${doms}</select></label><label class="text-xs text-slate-400">مدت (دقیقه)<select id="sm">${[25,45,50,90].map(m=>op(m,fa(m),m==45)).join('')}</select></label></div><button class="btn btn-p w-full" data-a="seclude" ${dis}>🏯 ورود به انزوا و شروع تایمر</button><div class="text-[11px] text-slate-400">هر انزوا یک تسک امروز می‌سازد و با نرخ همان حوزه پاداش می‌دهد؛ جلسهٔ تایمردار برای دروازه حساب می‌شود.</div></section>
+ <section class="g p-4 space-y-2">${hd('book-open','صف مطالعه و مرور فاصله‌دار')}<div class="text-[11px] text-slate-400">موضوع تازه را یاد بگیر، بعد ۱، ۳، ۷ و ۱۴ روز بعد مرورش کن تا «تسلط کامل» بگیرد. پاداش مرور: سقف ۶ در روز (امروز ${fa(cap)}/۶) · موعد امروز: ${fa(due)}</div><div class="grid grid-cols-3 gap-2"><input id="tn" class="col-span-2" placeholder="موضوع (مثلاً Kubernetes Probes)" maxlength="80"><select id="td">${doms}</select></div><button class="btn" data-a="tpadd">➕ افزودن به صف</button>${L.map(t=>`<div class="g p-2.5 flex items-center gap-2 ${t.due<=n?'border-amber-400':''}"><span class="inline-block w-2 h-2 rounded-full" style="background:${dm(t.dom).c}"></span><div class="flex-1 min-w-0 text-sm">${esc(t.n)}<div class="text-[11px] text-slate-400">${t.st?'مرحله '+fa(t.st)+'/۴':'جدید'} · ${t.due<=n?'⏰ موعد الان':dFa(t.due)}</div></div>${t.due<=n?`<button class="btn-s" data-a="tprev" data-v="${t.id}">${t.st?'✓ مرور شد':'✓ یاد گرفتم'}</button>`:''}<button class="btn" data-a="tpdel" data-v="${t.id}">🗑</button></div>`).join('')||'<div class="text-sm text-slate-400">صف خالی است.</div>'}</section>`};
+
+V.rt=()=>{
+  if(!D.templates.some(t=>t.id==eT))eT=D.tpl;const t=TP(eT),g=t.gate,op=(a,b,x)=>`<option value="${a}" ${x?'selected':''}>${b}</option>`;
+  const tk=t.tasks.map((k,i)=>{const a=p=>`data-f="tt" data-p="${p}" data-i="${i}"`;
+    return `<div class="g p-3 space-y-2"><div class="flex gap-1"><input ${a('n')} value="${esc(k.n)}" maxlength="80"><button class="btn" data-a="tmv" data-v="${i}|-1" ${i?'':'disabled'}>↑</button><button class="btn" data-a="tmv" data-v="${i}|1" ${i<t.tasks.length-1?'':'disabled'}>↓</button><button class="btn" data-a="tdel" data-v="${i}">🗑</button></div><div class="grid grid-cols-3 gap-2 text-[11px] text-slate-400"><label>ساعت پایه<input type="time" ${a('t')} value="${hm(k.t%1440)}"></label><label>تایمر (دقیقه)<input type="number" min="0" max="600" ${a('m')} value="${k.m}"></label><label>حوزه<select ${a('dom')}>${op('','بدون حوزه (عادت/نظم)',!k.dom)+D.domains.map(x=>op(x.id,esc(x.n),k.dom==x.id)).join('')}</select></label><label>XP پایه<input type="number" min="0" ${a('x')} value="${k.x}"></label><label>سنگ اولیه پایه<input type="number" min="0" ${a('co')} value="${k.co}"></label><label>دسته<select ${a('k')}>${Object.keys(CT).map(c=>op(c,CT[c],k.k==c)).join('')}</select></label></div></div>`}).join('');
+  return `<section class="g p-4 space-y-3">${hd('sliders-horizontal','مدیریت تمپلیت‌ها')}<select data-f="teds">${D.templates.map(x=>op(x.id,esc(x.n),x.id==eT)).join('')}</select><div class="flex flex-wrap gap-2"><button class="btn" data-a="tnew">➕ جدید</button><button class="btn" data-a="tdup">⧉ کپی</button><button class="btn" data-a="tdelT">🗑 حذف</button></div><label class="text-xs text-slate-400 block">نام تمپلیت<input data-f="tn" value="${esc(t.n)}" maxlength="40"></label>
+  <div class="text-sm font-semibold text-amber-300">شرط باز شدن دروازه دوپامین</div><div class="grid grid-cols-2 gap-2 text-[11px] text-slate-400"><label>حداقل جلسه تخصصی (۰ = غیرفعال)<input type="number" min="0" data-f="tg" data-p="n" value="${g.n}"></label><label>یا حداقل دقیقه تمرکز (۰ = غیرفعال)<input type="number" min="0" data-f="tg" data-p="m" value="${g.m}"></label><label>ساعت حداقلی (۰ = بدون قید)<input type="number" min="0" max="23" data-f="tg" data-p="h" value="${g.h}"></label><label class="flex items-center gap-2 text-sm text-slate-200"><input type="checkbox" data-f="tg" data-p="all" ${g.all?'checked':''}> ۱ تسک تایمردار از هر حوزهٔ فعال همان روز</label></div></section>
+  <section class="space-y-2">${hd('list-checks','تسک‌های «'+esc(t.n)+'»')}${tk}<button class="btn btn-p w-full" data-a="tadd">➕ افزودن تسک</button></section>
+  <section class="g p-4 space-y-2">${hd('palette','حوزه‌ها')}${D.domains.map((x,i)=>`<div class="flex gap-2 items-center"><input type="color" class="!w-12 !p-0 h-10" data-f="dn" data-p="c" data-i="${i}" value="${x.c}"><input data-f="dn" data-p="n" data-i="${i}" value="${esc(x.n)}" maxlength="30"></div>`).join('')}<button class="btn" data-a="dadd">➕ حوزهٔ جدید</button></section>`;
+};
+
+V.stats=()=>{const K=wk(7),ds=K.map(k=>D.days[k]),cs=ds.map(d=>d?calc(d):null),tr=x=>cs.reduce((a,c)=>a+(c?c.tr[x]||0:0),0),ses=cs.reduce((a,c)=>a+(c?c.n:0),0),lab=K.map(k=>fa(new Date(k+'T12:00:00').toLocaleDateString('fa-IR',{day:'numeric'})));
+  const ct=f=>ds.filter(d=>d&&f(d)).length,cl=ds.filter(d=>d&&d.closed&&d.st!='rest'),okc=cl.filter(d=>d.st=='ok').length,sl=slp();
+  const strip=wk(14).map(k=>{const d=D.days[k],c=!d?'#334155':!d.closed?'#64748b':d.st=='ok'?'#34d399':d.st=='rest'?'#38bdf8':'#fbbf24';return `<span class="w-5 h-5 rounded" style="background:${c}" title="${k}"></span>`}).join('');
+  return `<section class="g p-4 text-sm space-y-1">${hd('bar-chart-3','آمار هفتگی')}<div>Completed Sessions: ${fa(ses)} · Tracked Focus: ${fa(Math.round(cs.reduce((a,c)=>a+(c?c.tm:0),0)/6)/10)} ساعت</div><div>${D.domains.map(x=>esc(x.n)+' '+fa(Math.round(tr(x.id)/6)/10)+'h').join(' · ')}</div><div>روز عادی ${fa(ct(d=>d.mode=='n'))} · Rest ${fa(ct(d=>d.mode=='rest'))} · ناقص ${fa(ct(d=>d.st=='part'))}</div><div>موفقیت روزهای فعال: ${cl.length?fa(Math.round(okc/cl.length*100))+'٪':'—'}</div><div>خواب: ${sl.pc===null?'—':'پایبندی '+fa(sl.pc)+'٪'}${sl.avg?' · میانگین '+fa(sl.avg.toFixed(1))+' ساعت':''}</div></section>
+  <section class="g p-4">${hd('timer','دقایق ثبت‌شده با تایمر (۷ روز)')}${bars(cs.map(c=>c?c.tm:0),lab,'#a78bfa')}</section>
+  <section class="g p-4">${hd('layers','ساعات تمرکز به تفکیک حوزه (۷ روز)')}${bars(D.domains.map(x=>tr(x.id)/60),D.domains.map(x=>esc(x.n)),'#fbbf24')}</section>
+  <section class="g p-4">${hd('flame','استمرار (۱۴ روز): سبز موفق · زرد ناقص · آبی Rest')}<div class="flex flex-wrap gap-1">${strip}</div></section>
+  <section class="g p-4">${hd('moon','ساعات خواب (۷ روز)')}${bars(ds.map(d=>d?dur(d)||0:0),lab,'#60a5fa')}</section>
+  <section class="g p-4">${hd('trending-up','XP روزانه (۱۴ روز)')}${bars(wk(14).map(k=>D.days[k]&&D.days[k].closed?D.days[k].xp:0),wk(14).map(k=>fa(k.slice(8))),'#34d399')}</section>`};
+
+const card=(z,store)=>{const own=D.inv[z[0]]!==undefined,ok=rk(xpOf()+pend().xp)>=z[7];
+  return `<div class="g p-3 border-2 rar-${z[2]} flex flex-col gap-1"><div class="flex items-center gap-2"><span class="text-3xl">${z[8]}</span><div class="min-w-0"><div class="font-semibold text-sm">${esc(z[3])}</div><div class="text-[11px] text-slate-400">${esc(z[4])} · ${RAR[z[2]]}</div></div></div><div class="text-xs text-slate-300 flex-1">${esc(z[5])}</div><div class="text-[11px] text-slate-400">${SLOT[z[1]]}</div>${store?(own?'<div class="text-emerald-300 text-xs font-bold">✓ در کلکسیون</div>':`<button class="btn-s" data-a="buy" data-v="${z[0]}" ${ok?'':'disabled'}>${ok?'خرید · '+fa(z[6])+' 🔷':'🔒 رنک '+fa(z[7]+1)}</button>`):`<button class="btn-s" data-a="eq" data-v="${z[0]}">${D.eq[z[1]]==z[0]?'درآوردن':'تجهیز (Equip)'}</button>`}</div>`};
+
+V.store=()=>{
+  const curRk=rk(xpOf()+pend().xp);
+  const guList=GUS.map(g=>{
+    const own=!!D.gu[g[0]],ok=curRk>=g[8];
+    return `<div class="g p-3.5 border-2 rar-${g[2]} flex flex-col gap-1.5"><div class="flex items-center gap-2"><span class="text-3xl">${g[9]}</span><div><div class="font-bold text-sm">${esc(g[3])} <span class="text-amber-300 text-xs">(رنک ${fa(g[1])})</span></div><div class="text-[11px] text-slate-400">${esc(g[4])} · ${RAR[g[2]]}</div></div></div><div class="text-xs text-emerald-200">${esc(g[5])}</div><div class="text-[11px] text-amber-200/80 flex-1">${esc(g[6])}</div>${own?'<div class="text-emerald-300 text-xs font-bold">✓ در روزنه آغازین رام شده</div>':`<button class="btn-s" data-a="buygu" data-v="${g[0]}" ${ok?'':'disabled'}>${ok?'رام کردن گو · '+fa(g[7])+' 🔷':'🔒 نیازمند رنک '+fa(g[8]+1)}</button>`}</div>`;
+  }).join('');
+  const tokList=TOKENS.map(tk=>`<div class="g p-3.5 border border-amber-500/30 flex flex-col gap-1.5"><div class="flex items-center gap-2"><span class="text-3xl">${tk[5]}</span><div><div class="font-bold text-sm">${tk[1]}</div><div class="text-[11px] text-slate-400">${tk[2]} · موجودی: ${fa(D.tokens[tk[0]]||0)}</div></div></div><div class="text-xs text-slate-300 flex-1">${tk[3]}</div><button class="btn-s" data-a="buytok" data-v="${tk[0]}">خرید طومار · ${fa(tk[4])} 🔷</button></div>`).join('');
+
+  return `<section class="g p-4 space-y-3">${hd('store','بهشت زرد گنجینه‌ها (Treasure Yellow Heaven)')}<div class="text-sm">موجودی سنگ اولیه: <b class="text-amber-300">${fa(coinsOf())} 🔷</b></div><div class="flex flex-wrap gap-2"><button class="btn ${stTab=='gu'?'btn-p':''}" data-a="sttab" data-v="gu">🦋 کرم‌های گو (Passive Buffs)</button><button class="btn ${stTab=='tok'?'btn-p':''}" data-a="sttab" data-v="tok">🎟️ بازار سیاه دوپامین</button><button class="btn ${stTab=='cos'?'btn-p':''}" data-a="sttab" data-v="cos">👑 آواتار، قاب و القاب</button></div></section>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${stTab=='gu'?guList:stTab=='tok'?tokList:ST.map(z=>card(z,1)).join('')}</div>`;
+};
+
+V.inv=()=>{const o=ST.filter(z=>D.inv[z[0]]!==undefined&&(invR=='all'||z[2]==invR)),op=(a,b,s)=>`<option value="${a}" ${s==a?'selected':''}>${b}</option>`;
+  return `<section class="g p-4">${hd('sparkles','تجهیزات ظاهری کاراکتر')}<div class="grid grid-cols-4 gap-2 mb-3">${Object.keys(SLOT).map(s=>{const z=eqo(s);return `<div class="g p-2 text-center text-xs"><div class="text-slate-400">${SLOT[s]}</div><div class="text-2xl">${z?z[8]:'—'}</div><div>${z?esc(z[3]):''}</div></div>`}).join('')}</div><select data-f="fr">${op('all','همه کمیابی‌ها',invR)+Object.keys(RAR).map(k=>op(k,RAR[k],invR)).join('')}</select></section><div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${o.map(z=>card(z,0)).join('')||'<div class="g p-4 text-sm text-slate-400">آیتم ظاهری پیدا نشد؛ از بهشت زرد خرید کن.</div>'}</div>`;
+};
+
+V.ach=()=>{const s=stats();return AC.map(a=>{const v=Math.min(a[4],a[5](s)),u=D.ach[a[0]];return `<div class="g p-3 flex gap-3 items-center"><div class="text-3xl ${u?'':'grayscale'}">${a[3]}</div><div class="flex-1 min-w-0"><div class="font-semibold">${a[1]} ${u?'🔓':'🔒'}</div><div class="text-xs text-slate-300">${a[2]}</div><div class="bar mt-1"><i class="xp" data-w="${v/a[4]*100}" style="width:0"></i></div><div class="text-[11px] text-slate-400">${fa(Math.round(v))}/${fa(a[4])} ${a[7]} · پاداش: ${fa(a[6])} 🔷${u?' · '+dFa(u):''}</div></div></div>`}).join('')};
+
+V.hist=()=>{const SL={ok:['✅ موفق','text-emerald-300'],part:['🌓 ناقص','text-amber-300'],rest:['🌿 Rest Day','text-sky-300']};
+  const h=Object.keys(D.days).sort().reverse().map(k=>{const d=D.days[k],c=calc(d),s=SL[d.st]||['⏳ باز','text-slate-300'],sl=dur(d);
+    const ms=D.domains.map(x=>((d.mis[x.id]||[])[0]?x.n+': '+d.mis[x.id][0]:'')+(d.out[x.id]?' ⇒ '+d.out[x.id]:'')).filter(Boolean).map(esc).join('<br>');
+    return `<div class="g p-3 text-sm space-y-1"><div class="flex justify-between"><b>${dFa(k)}</b><span class="${s[1]}">${s[0]}</span></div><div class="text-xs text-slate-300">${d.mode=='rest'?'Rest Day':esc(d.tn||tp(d).n)} · جلسه ${fa(c.n)}/${fa(c.tot)} · تایمر ${fa(c.tm)} دقیقه · ${fa(d.xp)} XP · ${fa(d.coins)} 🔷${sl?' · خواب '+fa(sl.toFixed(1))+'h':''}${d.energy?' · Energy '+fa(d.energy):''}</div>${d.note?`<div class="text-xs text-slate-400">📝 ${esc(d.note)}</div>`:''}${ms?`<div class="text-xs text-slate-400">${ms}</div>`:''}</div>`}).join('');
+  return h;
+};
+
+V.set=()=>`<section class="g p-4 space-y-3">${hd('settings','تنظیمات')}<label class="text-xs text-slate-400 block">تمپلیت پیش‌فرض روزهای جدید<select data-f="base">${D.templates.map(t=>`<option value="${t.id}" ${t.id==D.tpl?'selected':''}>${esc(t.n)}</option>`).join('')}</select></label><div class="flex flex-wrap gap-2"><button class="btn ${D.set.ds?'btn-p':''}" data-a="dst">🌀 ردیاب انحراف توجه (خروج از تب بیش از ۳۰ ثانیه = ‎−۱۰٪ کیفیت جلسه): ${D.set.ds?'روشن':'خاموش'}</button><button class="btn btn-p" data-a="testalarm">🔔 تست صدای زنگ پایان تایمر</button></div><label class="text-sm flex items-center gap-2"><input type="checkbox" data-a="notif" ${D.set.notif?'checked':''}> اعلان مرورگر هنگام پایان تایمر</label><label class="text-xs text-slate-400 block">Sleep Shift<select data-f="phase">${PH.map((p,i)=>`<option value="${i}" ${D.phase==i?'selected':''}>${p[0]}</option>`).join('')}</select></label></section>
+  ${syncCard()}<section class="g p-4 space-y-2">${hd('database','داده‌ها (Schema v4.7 — Reverend Insanity Edition)')}<div class="flex flex-wrap gap-2"><button class="btn btn-p" data-a="exp">Export Backup (JSON)</button><button class="btn" data-a="imp">Import Backup</button></div><div class="text-[11px] text-slate-400">پشتیبانی کامل از فایل‌های بکاپ نسخه ۱، ۲، ۳ و ۴. مرز تغییر شبانه‌روز ساعت ۰۴:۰۰ بامداد است.</div></section>`;
+
+/* ================= render & actions ================= */
+function banners(){let h='';const d=cd(),b=(a,v,l)=>`<button class="btn" data-a="${a}" data-v="${v}">${l}</button>`;
+  if(D.cur<lday()&&!d.closed&&!skipP){const st=auto(d),ico=st=='rest'?'🌿 روز آزاد':st=='ok'?'✅ موفق':'🌓 ناقص',lb=st=='rest'?'روز آزاد':st=='ok'?'موفق':'ناقص',canRest=d.mode!='rest'&&restOk(d)&&!D.bty['d'+D.cur+'_0']&&!D.bty['d'+D.cur+'_1']&&!D.topics.some(t=>t.lr==D.cur);
+    h+=`<div class="g p-4 mb-3 border-amber-400/60 text-sm"><div class="mb-2">پروندهٔ روز ${dFa(D.cur)} هنوز بسته نشده است (وضعیت محاسبه‌شده بر اساس عملکرد: <b>${ico}</b>).</div><div class="flex flex-wrap gap-2">${b('pend','auto','⚖️ ثبت و بستن خودکار پرونده ('+lb+')')+(canRest?b('pend','rest','🌿 ثبت به عنوان روز آزاد'):'')+b('pend','cont','↩️ بازگشت و ادامه دادن همان روز')}</div></div>`}
+  if(sugg())h+=`<div class="g p-4 mb-3 border-emerald-400/60 text-sm"><div class="mb-2">۵ روز از ۷ روز فعال اخیر موفق بود. می‌خواهی برنامه پایه را به Standard ارتقا بدهی؟</div><div class="flex gap-2">${b('up','1','ارتقا بده')+b('up','0','فعلاً نه')}</div></div>`;return h}
+function render(){wbCalc();const i=rk(xpOf()+pend().xp),g=gate(cd());
+  if(prevR>=0&&i>prevR){snd('lvl');toast('⚡ Level Up! '+R[i][0]+' / '+R[i][1]);lvFx=1}prevR=i;
+  if(g){if(g.open&&gPrev===false){snd('unlock');toast('🔓 دروازه دوپامین باز شد!');gFx=1}gPrev=g.open}else gPrev=null;
+  $('nav').innerHTML=NAV.map(n=>`<button class="nb ${tab==n[0]?'on':''}" data-a="tab" data-v="${n[0]}"><i data-lucide="${n[2]}" class="w-4 h-4"></i>${n[1]}</button>`).join('');
+  $('ban').innerHTML=banners();$('v').innerHTML=V[tab]();TMR.draw();if(window.lucide)lucide.createIcons();
+  requestAnimationFrame(()=>document.querySelectorAll('[data-w]').forEach(e=>e.style.width=e.dataset.w+'%'));lvFx=0;gFx=0}
+
+const RF={
+  1:{mat:{grass:2,jade:1},co:80,g:.15,gu:.7,ng:.55,xn:70,xb:15,hp:5,pn:1,sat:0,gx:160,gt:'novel',gtn:'۱ طومار ناول روزانه'},
+  2:{mat:{grass:1,blood:2,frost:1},co:200,g:.35,gu:.75,ng:.45,xn:150,xb:25,hp:8,pn:2,sat:10,gx:280,gt:'hib',gtn:'۱ مهر خواب زمستانی'},
+  3:{mat:{blood:2,frost:2,star:1},co:420}
+};
+const tRange=(t,R)=>t==1?[1,Math.min(3,R+1)]:t==2?[2,Math.min(5,R+2)]:[Math.min(7,Math.max(3,R+1)),Math.min(7,R+3)];
+const A={
+  testalarm(){alarmSnd();toast('🔔 تست صدای زنگ پایان پومودورو پخش شد')},
+  dst(){D.set.ds=D.set.ds?0:1;save();render()},
+  asc(){const a=Math.max(0,D.asc|0);if(a>=8||rkRaw(xpOf())<=a)return;const nd=ndOf(a);if(streak()<nd||okAt(a)<nd)return toast('⛓️ باید '+fa(nd)+' روز موفق پشت‌سرهم و '+fa(nd)+' روز موفق در همین رنک داشته باشی');
+    const hp=hpCalc().h,cost=(a+1)*150;
+    if(hp<70)return toast('❤️ سلامت اراده باید حداقل ۷۰ باشد (فعلی: '+fa(hp)+')');
+    if(coinsOf()<cost)return toast('🔷 هزینهٔ مصیبت آسمانی '+fa(cost)+' سنگ اولیه است');
+    D.coins0-=cost;D.mats.star=(D.mats.star||0)+1;D.asc=a+1;D.ascAt=lday();snd('lvl');save();render();toast('🌩️ از تنگنا گذشتی! رتبهٔ «'+R[a+1][0]+'» باز شد · +۱ ☄️')},
+  seclude(){const d=cd();if(d.closed||d.mode=='rest'||d.extra.length>=30)return toast('امروز امکان ساخت انزوا نیست');const dom=$('sd').value,m=+$('sm').value,r=RT[dom]||[60,45,8],id=uid('q'),w=new Date(),hh=p2(w.getHours())+':'+p2(w.getMinutes());d.extra.push({id,n:'🏯 انزوا: '+dm(dom).n,t:mm(hh),m,dom,x:Math.round(r[0]*m/r[1]),co:Math.round(r[2]*m/r[1]),k:'n'});d.ov[id]=hh;save();TMR.start(id)},
+  tpadd(){const nm=Sx($('tn').value.trim(),80),dom=$('td').value;if(!nm)return toast('نام موضوع را بنویس');if(D.topics.length>=80)return toast('صف پر است');D.topics.push({id:uid('s'),dom,n:nm,st:0,due:lday(),lr:''});save();render()},
+  tpdel(id){D.topics=D.topics.filter(x=>x.id!=id);save();render()},
+  tprev(id){const t=D.topics.find(x=>x.id==id),n=lday();if(cd()&&cd().mode=='rest')return toast('🚫 در روز آزاد امکان ثبت مرور نیست');if(!t||t.due>n)return;const IV=[1,3,7,14],ma=t.st==4;
+   if(D.topics.filter(x=>x.lr==n).length<6){const q=hasGu('scholar')||hasGu('wisdom')?2:1,x=q*(ma?80:t.st?15+t.st*5:25),c=q*(ma?20:t.st?4:5);D.xp0+=x;D.coins0+=c;let mk='';if(ma){mk=rollMat(45);D.mats[mk]=(D.mats[mk]||0)+1}toast('📖 +'+fa(x)+' XP · +'+fa(c)+' 🔷'+(ma?' · تسلط کامل! +۱ '+MATS[mk][0]+' '+MATS[mk][1]:''))}else toast('سقف پاداش مرور امروز پر است؛ مرور ثبت شد');
+   t.lr=n;t.st=Math.min(5,t.st+1);t.due=t.st<5?lday(Date.now()+IV[t.st-1]*864e5):'2099-12-31';snd('done');save();render()},
+  tab(v){tab=v;render();scrollTo(0,0)},
+  sttab(v){stTab=v;render()},
+  mode(v){const d=cd();if(d.closed)return;if(v=='rest'&&!restOk(d))return toast('🚫 سقف ۲ روز آزاد در هفته پر شده؛ امروز باید کار کنی');
+    if(v=='rest'&&D.tm)return toast('⏳ ابتدا تایمر فعال را از ویجت پایین ثبت یا لغو کن');
+    if(v=='rest'&&(D.bty['d'+D.cur+'_0']||D.bty['d'+D.cur+'_1']||D.topics.some(t=>t.lr==D.cur)))return toast('🚫 امروز پاداش مأموریت یا مرور دریافت کرده‌ای؛ امکان تبدیل روز به Rest Day نیست (در صورت خستگی، روز به صورت ناقص ثبت می‌شود و استریک نمی‌شکند)');
+    if(v=='rest'&&Object.keys(d.done).length&&!confirm('در حالت روز آزاد، تسک‌های انجام‌شدهٔ امروز در محاسبه XP لحاظ نمی‌شوند. ادامه می‌دهی؟'))return;d.mode=v;gPrev=null;save();render()},
+  // Fix 6c: Block manual checkbox toggle if timer is currently running for that task
+  tog(id){
+    const d=cd(),g=gate(d),k=tasks(d).find(x=>x.id==id);
+    if(!k||d.closed||(k.k=='g'&&g&&!g.open))return;
+    if(D.tm&&D.tm.id==id)return toast('⏳ تایمر این تسک در حال اجراست؛ ابتدا از ویجت پایین آن را ثبت یا لغو کن');
+    if(id in d.done)delete d.done[id];else{d.done[id]=0;snd('tick')}
+    save();render();
+  },
+  start(i){TMR.start(i)},pz(){TMR.pz()},tfin(){TMR.fin(0)},tcancel(){TMR.cancel()},
+  en(v){const d=cd();if(d.closed)return;d.energy=d.energy==+v?0:+v;save();render()},
+  close(){const d=cd();if(d.closed)return;if(D.tm)return toast('⏳ ابتدا تایمر فعال را از ویجت پایین ثبت یا لغو کن');if(!confirm('پرونده امروز بسته شود و وضعیت تغذیه کرم‌های گو محاسبه گردد؟'))return;const st=auto(d);settle(d,st);if(D.tm&&D.tm.day==D.cur){D.tm=null;bnStop();TMR.loop()}chkAch();save();render();snd(st=='ok'?'done':'tick');toast(st=='ok'?'🔥 روز موفق ثبت شد':st=='rest'?'🌿 Rest Day ثبت شد':'🌓 روز ناقص ثبت شد')},
+  reopen(){const d=cd();if(!d.closed||!confirm('روز دوباره باز شود؟ پاداش آن تا بستن مجدد کم می‌شود.'))return;const pc=d.preClose,cdl=d.closeDelta;
+    if(pc){D.gu=pc.gu;D.guEq=pc.guEq;D.coins0=pc.coins0;D.hpPen=pc.hpPen}
+    else if(cdl){
+      Object.keys(cdl.satDiff).forEach(g=>{if(D.gu[g])D.gu[g].sat=Math.max(0,Math.min(100,D.gu[g].sat-cdl.satDiff[g]))});
+      Object.keys(cdl.deadGus).forEach(g=>{if(!D.gu[g]){D.gu[g]=cdl.deadGus[g];D.coins0+=cdl.deadGus[g].cost||0;if(cdl.deadEq.includes(g)&&D.guEq.length<3&&!D.guEq.includes(g))D.guEq.push(g)}});
+      D.hpPen=Math.max(-50,Math.min(100,(D.hpPen||0)-cdl.hpPenDiff));
+    }
+    d.fed=0;d.preClose=null;d.closeDelta=null;d.cic=0;d.gHp=null;d.ascRk=null;d.devWipe=d.devRf?1:0;d.closed=0;d.st='';d.xp=0;d.coins=0;save();render()},
+  pend(v){const d=cd();if(v=='cont'){skipP=1;return render()}
+    if(d.closed||D.cur>=lday())return;
+    if(D.tm)return toast('⏳ ابتدا تایمر فعال را از ویجت پایین ثبت یا لغو کن');
+    let st;
+    if(v=='auto')st=auto(d);
+    else if(v=='rest'){
+      if(!restOk(d)||D.bty['d'+D.cur+'_0']||D.bty['d'+D.cur+'_1']||D.topics.some(t=>t.lr==D.cur))return toast('🚫 امکان ثبت این روز به‌عنوان روز آزاد نیست (سقف هفتگی پر است یا امروز پاداش مأموریت/مرور دریافت شده)');
+      if(Object.keys(d.done).length&&!confirm('در حالت روز آزاد، تسک‌های انجام‌شدهٔ آن روز در محاسبه XP لحاظ نمی‌شوند. ادامه می‌دهی؟'))return;
+      st='rest';
+    }else return;
+    settle(d,st);ensureDay();chkAch();save();render()},
+  up(v){if(v=='1'&&D.templates.some(t=>t.id=='std'))D.tpl='std';D.set.sug=1;save();render()},
+  claimbty(idx){
+    const d=cd(),c=calc(d),b=dayBounties(D.cur)[+idx],key='d'+D.cur+'_'+idx;
+    if(d.mode=='rest'||d.closed)return toast('🚫 در روز آزاد یا پرونده بسته امکان دریافت پاداش نیست');
+    if(!b||D.bty[key]||!b[5](c,d))return;
+    const q=hasGu('wisdom')?2:1;D.bty[key]=q;const mk=rollMat(35);D.mats[mk]=(D.mats[mk]||0)+q;
+    snd('done');save();render();toast('🎁 پاداش ماموریت فرعی + '+fa(q)+' '+MATS[mk][0]+' '+MATS[mk][1]+' دریافت شد!');
+  },
+  buygu(id){
+    const g=GUS.find(x=>x[0]==id);if(!g||D.gu[id])return;
+    if(rk(xpOf()+pend().xp)<g[8])return toast('🔒 رنک کافی نیست');
+    if(coinsOf()<g[7])return toast('🔷 سنگ اولیه کافی نیست');
+    D.gu[id]={sat:100,cost:g[7]};
+    if(D.guEq.length<3)D.guEq.push(id);
+    chkAch();save();render();snd('lvl');toast('🦋 کرم گو رام شد: '+g[3]);
+  },
+  // Fix 3: Block unequipping Gu worms mid-day once any task has been completed today
+  gueq(id){
+    if(!D.gu[id])return;
+    const d=cd();
+    if(D.guEq.includes(id)){
+      if(!d.closed&&Object.keys(d.done).length>0)return toast('🚫 در میانهٔ تهذیب روزانه امکان خارج کردن گو از روزنه نیست؛ قبل از شروع تسک‌ها یا پس از بستن روز اقدام کن');
+      D.guEq=D.guEq.filter(x=>x!==id);
+    }else{
+      if(D.guEq.length>=3)return toast('⚠️ حداکثر ۳ کرم گو می‌توانی در روزنه تجهیز کنی');
+      if(D.gu[id].hib)D.gu[id].hib=0;
+      D.guEq.push(id);
+    }
+    save();render();
+  },
+  gufeed(id){
+    const st=D.gu[id];if(st&&st.cd>0)return toast('🍂 زنجره بهار و پاییز پس از شکافتن رودخانه زمان ضعیف است و تا '+fa(st.cd)+' روز فعال دیگر قابل تغذیه و استفاده نیست!');if(!st||st.sat>=100||st.hib)return;
+    const dying=st.sat===0,cost=gcost(id,st);
+    if(coinsOf()<cost)return toast('🔷 سنگ اولیه کافی برای تغذیه/احیا نداری');
+    if(dying&&(D.mats.blood||0)<1)return toast('🩸 برای احیای گوی در حال احتضار ۱ جوهر خون لازم است');
+    D.coins0-=cost;if(dying)D.mats.blood--;st.sat=100;snd('done');save();render();toast(dying?'⚡ گو از مرگ دائمی نجات یافت!':'🍖 سیری گو به ۱۰۰٪ رسید!');
+  },
+  guhib(id){
+    const st=D.gu[id];if(st&&st.cd>0)return toast('🍂 زنجره بهار و پاییز پس از شکافتن رودخانه زمان ضعیف است و تا '+fa(st.cd)+' روز فعال دیگر قابل تغذیه و استفاده نیست!');if(!st||st.sat<=0||st.hib)return;
+    if(!(D.tokens.hib>0))return toast('❄️ مهر خواب زمستانی نداری؛ از بازار سیاه بخر (۵۰۰ 🔷)');
+    D.tokens.hib--;st.hib=1;D.guEq=D.guEq.filter(x=>x!==id);snd('unlock');save();render();toast('❄️ گو به خواب زمستانی رفت');
+  },
+  inh(){if((D.inh||0)<3)return;D.inh-=3;D.xp0+=450;D.coins0+=350;D.mats.star=(D.mats.star||0)+1;snd('lvl');chkAch();save();render();toast('🏛️ غار میراث راستین ونرابل گشوده شد! +۴۵۰ XP · +۳۵۰ 🔷 · +۱ ☄️')},
+  refine(tier){
+    const t=+tier,Rc=rk(xpOf()+pend().xp)+1,[lo,hi]=tRange(t,Rc),cf=RF[t];if(!cf)return;
+    if(coinsOf()<cf.co)return toast('🔷 سنگ اولیه کافی نیست');
+    const lack=Object.keys(cf.mat).find(k=>(D.mats[k]||0)<cf.mat[k]);
+    if(lack)return toast('مواد کافی نیست: '+MATS[lack][0]+' '+MATS[lack][1]+' ×'+fa(cf.mat[lack]));
+    D.coins0-=cf.co;Object.keys(cf.mat).forEach(k=>D.mats[k]-=cf.mat[k]);
+    const pick=(a,b)=>{const u=GUS.filter(g=>!D.gu[g[0]]&&g[1]>=a&&g[1]<=b);return u.length?u[Math.floor(Math.random()*u.length)]:null};
+    const tk=(k,n)=>D.tokens[k]=(D.tokens[k]||0)+n,pit=n=>D.pity=Math.min(10,(D.pity||0)+n),r=Math.random();
+    if(t==3){
+      if(r<.8){D.pity=0;const g=pick(lo,hi)||pick(1,hi);snd('lvl');
+        if(g){D.gu[g[0]]={sat:100,cost:0};toast('🌌 پالایش جاودانه! کرم گوی «'+g[3]+'» کشف شد!')}
+        else{D.xp0+=500;tk('bypass',1);tk('hib',1);toast('🌌 همهٔ گوهای این بازه را داری: +۵۰۰ XP · ۱ طلسم شکاف · ۱ مهر خواب زمستانی')}
+      }else{D.xp0+=300;tk('bypass',1);pit(4);snd('tick');toast('🌩️ اراده بهشت مقاومت کرد؛ گویی شکل نگرفت: +۳۰۰ XP و ۱ طلسم شکاف دروازه')}
+    }else if(D.pity>=10||r<cf.g){
+      D.pity=0;snd('lvl');
+      const g=Math.random()<cf.gu?(pick(lo,hi)||(t==2?pick(1,1):null)):null;
+      if(g){D.gu[g[0]]={sat:100,cost:0};toast('🌟 پالایش طلایی! کرم گوی «'+g[3]+'» رایگان پالایش شد!')}
+      else{D.xp0+=cf.gx;tk(cf.gt,1);toast('🌟 پالایش طلایی! +'+fa(cf.gx)+' XP و '+cf.gtn)}
+    }else if(r<cf.g+cf.ng){
+      D.xp0+=cf.xn;if(cf.sat)gAdd(cf.sat);pit(cf.pn);snd('done');toast('⚗️ پالایش عادی: +'+fa(cf.xn)+' XP'+(cf.sat?' و +'+fa(cf.sat)+'٪ سیری گوهای زنده':''))
+    }else{
+      D.xp0+=cf.xb;D.hpPen=Math.min(100,(D.hpPen||0)+cf.hp);pit(cf.pn);snd('tick');toast('💥 انفجار دیگ! مواد سوخت: +'+fa(cf.xb)+' XP و −'+fa(cf.hp)+' HP');
+      if(hpCalc().h<=0){const pn=D.hpPen;D.hpPen=0;const raw=hpCalc().h;let T=30,m='🌀 انحراف چی! سلامت اراده به صفر رسید و ۱۰۰٪ سنگ‌های اولیه موجود در روزنه نابود شد!';
+        if(hasGu('cicada')){D.gu.cicada.sat=0;D.gu.cicada.cd=10;T=60;m='🦗 انحراف چی! زنجره فدا شد (۱۰ روز نقاهت) و HP روی ۶۰ برگشت'}
+        else{const wp=coinsOf();D.coins0-=wp;const dd=cd();if(dd){dd.devWipe=1;dd.devRf=1}}
+        D.hpPen=Math.max(-50,Math.min(100,raw-T));setTimeout(()=>toast(m),700)}
+    }
+    chkAch();save();render();
+  },
+  buytok(id){
+    const tk=TOKENS.find(x=>x[0]==id);if(!tk)return;
+    if(coinsOf()<tk[4])return toast('🔷 سنگ اولیه کافی نیست');
+    D.coins0-=tk[4];D.tokens[id]=(D.tokens[id]||0)+1;
+    snd('done');save();render();toast('🎟️ خریداری شد: '+tk[1]);
+  },
+  // Fix 4: Implement real effects for all 4 Black Market tokens
+  usetok(id){
+    if(!D.tokens[id]||D.tokens[id]<=0)return;
+    if(id=='hib')return toast('❄️ مهر خواب زمستانی را از روی کارت کرم گو مصرف کن');
+    if(id=='cata'&&(D.pity||0)>=10)return toast('شمارنده Pity هم‌اکنون در سقف ۱۰/۱۰ است؛ ابتدا پالایش کن!');
+    if(id=='pill'||id=='elixir'||id=='cata'){
+      if(id=='pill')gAdd(35);else if(id=='elixir')D.hpPen=Math.max(-50,(D.hpPen||0)-25);else D.pity=Math.min(10,(D.pity||0)+3);
+      D.tokens[id]--;snd('unlock');save();render();return toast('✨ '+TOKENS.find(x=>x[0]==id)[1]+' مصرف شد')}
+    const d=cd(),tk=TOKENS.find(x=>x[0]==id);
+    if(d.closed)return toast('⚠️ پرونده امروز بسته است؛ فردا از این طومار استفاده کن');
+    d.toks=d.toks||{};
+    if(id=='bypass'){
+      if(d.byp>=1)return toast('⚠️ هر روز فقط یک طلسم شکاف دروازه قابل استفاده است');
+      d.byp=(d.byp||0)+1;
+    }else if(id=='league'){
+      if((d.toks.league||0)>=1)return toast('⚠️ امروز قبلاً از این طومار استفاده کرده‌ای');d.toks.league=1;
+    }else if(id=='novel'){
+      if((d.toks.novel||0)>=1)return toast('⚠️ امروز قبلاً از این طومار استفاده کرده‌ای');d.toks.novel=1;
+      D.xp0+=15;
+    }else if(id=='feast'){
+      if((d.toks.feast||0)>=1)return toast('⚠️ امروز قبلاً از این طومار استفاده کرده‌ای');d.toks.feast=1;
+      gAdd(15);
+    }
+    D.tokens[id]--;snd('unlock');save();render();
+    toast('✨ طومار «'+tk[1]+'» برای امروز فعال شد!');
+  },
+  buy(id){const z=ST.find(x=>x[0]==id);if(!z||D.inv[id]!==undefined)return;if(rk(xpOf()+pend().xp)<z[7])return toast('🔒 رنک کافی نیست');if(coinsOf()<z[6])return toast('🔷 سنگ اولیه کافی نیست');D.inv[id]=z[6];chkAch();save();render();snd('done');toast('خرید شد: '+z[3])},
+  eq(id){const z=ST.find(x=>x[0]==id);if(!z||D.inv[id]===undefined)return;if(D.eq[z[1]]==id)delete D.eq[z[1]];else D.eq[z[1]]=id;save();render()},
+  notif(){D.set.notif=!D.set.notif;if(D.set.notif&&window.Notification&&Notification.permission=='default')Notification.requestPermission();save();render()},
+  exp(){const b=new Blob([JSON.stringify(D,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='cultivation-v4.7-backup-'+lday()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1500);toast('📦 بکاپ دانلود شد')},
+  imp(){$('imf').click()},
+  rest(){TMR.rest()},brown(){bnToggle()},odis(){TMR.offer=0;TMR.draw()},
+  ovt(id){const d=cd();if(d.closed)return;let v=prompt('ساعت جدید برای امروز (HH:MM) — خالی = بازگشت به برنامه',d.ov[id]||'');if(v===null)return;v=en(v.trim()).replace(/^(\d):/,'0$1:');if(!v)delete d.ov[id];else if(Tx(v))d.ov[id]=v;else return toast('❌ فرمت ساعت نادرست است');save();render()},
+  xdel(id){const d=cd();if(d.closed)return;d.extra=d.extra.filter(x=>x.id!=id);delete d.done[id];delete d.ov[id];save();render()},
+  qadd(){const d=cd(),n=Sx($('qn').value.trim(),80),t=Tx($('qt').value)||'12:00';if(d.closed)return;if(!n)return toast('نام تسک را بنویس');if(d.extra.length>=30)return;const dom=$('qd').value,k={id:uid('q'),n,t:mm(t),m:Nx($('qm').value,0,600)|0,dom:D.domains.some(x=>x.id==dom)?dom:'',x:Nx($('qx').value,0,5000)|0,co:Nx($('qc').value,0,5000)|0,k:'n'};const cp=capX(k.m,k.x,k.co);k.x=cp.x;k.co=cp.co;d.extra.push(k);d.ov[k.id]=t;save();render();toast('✅ تسک امروز اضافه شد')},
+  tadd(){const t=TP(eT);if(t.tasks.length>=60)return;t.tasks.push({id:uid('t'),n:'تسک جدید',t:600,m:0,dom:'',x:25,co:4,k:'n'});save();render()},
+  tdel(i){if(!confirm('این تسک از تمپلیت حذف شود؟'))return;TP(eT).tasks.splice(+i,1);save();render()},
+  tmv(v){const[i,s]=v.split('|').map(Number),a=TP(eT).tasks,j=i+s;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];save();render()},
+  tnew(){if(D.templates.length>=20)return;const id=uid('p');D.templates.push({id,n:'تمپلیت جدید',gate:{n:3,m:0,all:0,h:0},tasks:[]});eT=id;save();render()},
+  tdup(){if(D.templates.length>=20)return;const c=JSON.parse(JSON.stringify(TP(eT)));c.id=uid('p');c.n=Sx(c.n+' (کپی)',40);D.templates.push(c);eT=c.id;save();render()},
+  tdelT(){if(D.templates.length<2)return toast('حداقل یک تمپلیت باید بماند');if(!confirm('تمپلیت حذف شود؟'))return;D.templates=D.templates.filter(t=>t.id!=eT);if(!D.templates.some(t=>t.id==D.tpl))D.tpl=D.templates[0].id;eT=D.tpl;save();render()},
+  dadd(){if(D.domains.length>=20)return;D.domains.push({id:uid('x'),n:'حوزهٔ جدید',c:'#38bdf8',f:['موضوع','نتیجه مورد انتظار']});save();render()}
+};
+
+['buygu','gufeed','guhib','refine','buytok','usetok','buy','inh','asc','tprev'].forEach(n=>{const f=A[n];A[n]=function(...a){const d=cd();if(d&&d.closed)return toast('🔒 پروندهٔ امروز بسته شده است؛ برای خرید، پالایش یا تغییر تجهیزات، یا تا شروع روز بعد صبر کن یا ابتدا دکمهٔ اصلاح همین روز (Reopen) را بزن');return f.apply(this,a)}});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&b.tagName!='INPUT'&&!b.disabled&&A[b.dataset.a])A[b.dataset.a](b.dataset.v)});
+let sT=0;const flash=()=>{const e=$('sv');e.style.opacity=1;clearTimeout(flash.h);flash.h=setTimeout(()=>e.style.opacity=0,1200)};
+function field(t,live){const f=t.dataset.f,v=t.value,d=cd(),c=t.dataset.c,i=+t.dataset.i,p=t.dataset.p,open=!d.closed;let r=0;
+  if(f=='mis'&&open)(d.mis[c]=d.mis[c]||[])[i]=Sx(v,200);
+  else if(f=='nx')(D.next[c]=D.next[c]||[])[i]=Sx(v,200);
+  else if(f=='out'&&open)d.out[c]=Sx(v);
+  else if(f=='note'&&open)d.note=Sx(v);
+  else if((f=='bed'||f=='wake')&&open)d[f]=Tx(v);
+  else if(live)return;
+  else if(f=='tsel'){if(D.tm){toast('⏳ ابتدا تایمر فعال را از ویجت پایین ثبت یا لغو کن');r=1}else if(open&&D.templates.some(x=>x.id==v)){d.tpl=v;d.snap=null;ensureSnap(d);gPrev=null;r=1}}
+  else if(f=='phase'){D.phase=Nx(v,0,4)|0;if(open)d.ph=D.phase;r=1}
+  else if(f=='base'){if(D.templates.some(x=>x.id==v))D.tpl=v;r=1}
+  else if(f=='fr'){invR=v;r=1}
+  else if(f=='teds'){eT=v;r=1}
+  else if(f=='tn'){const x=TP(eT);x.n=Sx(v,40).trim()||x.n}
+  else if(f=='tg'){const g=TP(eT).gate;g[p]=p=='all'?(t.checked?1:0):Nx(v,0,p=='h'?23:p=='n'?50:1000)|0}
+  else if(f=='tt'){const k=TP(eT).tasks[i];if(!k)return;if(p=='n')k.n=Sx(v,80).trim()||k.n;else if(p=='t'){if(Tx(v))k.t=mm(v)}else if(p=='m')k.m=Nx(v,0,600)|0;else if(p=='dom')k.dom=D.domains.some(x=>x.id==v)?v:'';else if(p=='x')k.x=Nx(v,0,5000)|0;else if(p=='co')k.co=Nx(v,0,5000)|0;else if(p=='k')k.k=['n','g','s'].includes(v)?v:'n';r=p=='dom'||p=='k';const cp=capX(k.m,k.x,k.co);if(cp.x!=k.x||cp.co!=k.co){k.x=cp.x;k.co=cp.co;r=1;toast('⚠️ سقف XP و سنگ این تسک اعمال شد')}}
+  else if(f=='dn'){const x=D.domains[i];if(!x)return;if(p=='n')x.n=Sx(v,30).trim()||x.n;else if(CL.test(v))x.c=v}
+  else return;
+  if(live){clearTimeout(sT);sT=setTimeout(()=>{save();flash()},350)}else{save();flash()}
+  if(r)render()}
+document.addEventListener('input',e=>{if(e.target.dataset.f)field(e.target,1)});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.a=='notif')return A.notif();if(t.dataset.f)field(t,0)});
+addEventListener('pagehide',()=>save());
+let hid=0;document.addEventListener('visibilitychange',()=>{const t=D&&D.tm;if(document.hidden){hid=Date.now();return}if(D.set.ds&&t&&t.run&&!t.br&&hid&&Date.now()-hid>3e4){t.ds=(t.ds||0)+1;save();toast('🌀 انحراف چی! توجهت پرید؛ کیفیت جلسه −۱۰٪')}hid=0});
+$('imf').onchange=e=>{const f=e.target.files[0];e.target.value='';if(!f)return;if(f.size>5e6)return toast('❌ فایل خیلی بزرگ است');const r=new FileReader();
+  r.onload=()=>{let n=null;try{const o=JSON.parse(r.result);if(o&&typeof o=='object')n=o.v>=2?norm(o):typeof o.xp=='number'?mig(o):null}catch(_){}
+    if(!n)return toast('❌ فایل بکاپ نامعتبر است');if(!confirm('اطلاعات فعلی با این بکاپ جایگزین شود؟'))return;
+    try{localStorage.setItem(K4+'-prebackup',JSON.stringify(D))}catch(_){}D=n;wbCalc();if(D.asc<0)D.asc=rkRaw(xpOf());fixAsc();ensureDay();chkAch();save();TMR.loop();render();toast('✅ بکاپ بازیابی شد')};r.readAsText(f)};
+
+/* ================= Auto Sync (local Python server + GitHub Gist) ================= */
+// Last-write-wins on D.updatedAt. updatedAt only moves when the data really changed (see save()),
+// and nothing is pushed before a successful pull in this session, so a stale/fresh device never overwrites newer data.
+const GK='cultivation-gist-cfg',GF='cultivation.json';
+const SY={srv:'',gist:''},SB={srv:0,gist:0},SYT={srv:0,gist:0},SBY={srv:0,gist:0},SRR={srv:0,gist:0};let _lastSync=0;
+const sigOf=()=>JSON.stringify(D,(k,v)=>k=='updatedAt'?undefined:v);
+const gcfg=()=>{try{const c=JSON.parse(localStorage.getItem(GK)||'{}');return{token:String(c.token||'').trim(),id:String(c.id||'').trim()}}catch(e){return{token:'',id:''}}};
+const gistOn=()=>{const c=gcfg();return !!(c.token&&c.id)},srvOn=()=>/^https?:$/.test(location.protocol)&&!SRVNO;
+const setSt=(ch,m)=>{SY[ch]=m;const e=document.getElementById('sy-'+ch);if(e)e.textContent=m};
+const tnow=()=>new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
+const GH=()=>({Authorization:'Bearer '+gcfg().token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'});
+const okSt=o=>o&&typeof o=='object'&&o.v>=2&&o.updatedAt>0&&o.days&&typeof o.days=='object'?o:null;
+async function rGet(ch){
+  let t;
+  if(ch=='srv'){const r=await fetch('/api/db',{cache:'no-store'});if([404,405,501].includes(r.status)){SRVNO=1;throw new Error('NOAPI')}if(!r.ok)throw new Error('HTTP '+r.status);t=(await r.text()).trim()}
+  else{const r=await fetch('https://api.github.com/gists/'+gcfg().id,{headers:GH(),cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json(),f=j.files&&j.files[GF];if(!f)return{state:null};
+    t=f.content;if(f.truncated||t==null)t=await(await fetch(f.raw_url,{cache:'no-store'})).text()}
+  let o=null;try{o=t?JSON.parse(t):null}catch(e){}return{state:okSt(o),raw:t}
+}
+async function rPut(ch,body){
+  const r=ch=='srv'?await fetch('/api/db',{method:'POST',headers:{'Content-Type':'application/json'},body}):await fetch('https://api.github.com/gists/'+gcfg().id,{method:'PATCH',headers:{...GH(),'Content-Type':'application/json'},body:JSON.stringify({files:{[GF]:{content:body}}})});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+}
+function applyRemote(o,ch){
+  let n;try{n=norm(o)}catch(e){return false}
+  if((D.updatedAt||0)>0||Object.keys(D.days||{}).length>1){try{localStorage.setItem(K4+'-pre-sync',JSON.stringify(D))}catch(e){}}   // safety copy of what gets replaced
+  n.tm=D.tm||null;n.updatedAt=Nx(o.updatedAt,0,4e12,0);   // a running timer belongs to this device only
+  _adopt=1;try{D=n;wbCalc();if(D.asc<0)D.asc=rkRaw(xpOf());fixAsc();ensureDay();chkAch();_pris=false;render();_sig=sigOf();try{localStorage.setItem(K4,JSON.stringify(D))}catch(e){}}finally{_adopt=0}
+  toast('☁️ نسخهٔ جدیدتر از '+(ch=='srv'?'سرور':'Gist')+' دریافت شد');return true;
+}
+async function reconcile(ch){
+  if(ch=='srv'?!srvOn():!gistOn())return;
+  if(SBY[ch]){SRR[ch]=1;return}SBY[ch]=1;
+  try{
+    const{state:rs,raw}=await rGet(ch),lu=D.updatedAt||0;
+    if(rs&&rs.updatedAt>lu){if(applyRemote(rs,ch))setSt(ch,'✅ دریافت شد · '+tnow());SB[ch]=rs.updatedAt}
+    else if(!rs||lu>rs.updatedAt){
+      if(rs&&SB[ch]>0&&rs.updatedAt>SB[ch]){try{localStorage.setItem(K4+'-remote-'+ch,raw||'')}catch(e){}toast('⚠️ هم‌زمان روی دستگاه دیگر هم تغییر ایجاد شده بود؛ نسخهٔ جدیدتر برنده شد و نسخهٔ قبلی بکاپ شد')}
+      if(_pris||!D.updatedAt)D.updatedAt=Date.now();
+      const at=D.updatedAt;await rPut(ch,JSON.stringify(D));SB[ch]=at;setSt(ch,'☁️ ارسال شد · '+tnow());
+    }else{SB[ch]=lu;setSt(ch,'✅ همگام · '+tnow())}
+    _pris=false;
+  }catch(e){setSt(ch,e.message=='NOAPI'?'سرور /api/db در دسترس نیست':'⚠️ '+e.message);if(e.message=='NOAPI'&&!gistOn())_pris=false}
+  SBY[ch]=0;if(SRR[ch]){SRR[ch]=0;reconcile(ch)}
+}
+const sched=(ch,ms)=>{clearTimeout(SYT[ch]);SYT[ch]=setTimeout(()=>{SYT[ch]=0;reconcile(ch)},ms)};
+const schedSync=()=>{if(srvOn())sched('srv',500);if(gistOn())sched('gist',3000)};
+const syncAll=f=>{if(!f&&Date.now()-_lastSync<1e4)return;_lastSync=Date.now();if(srvOn())reconcile('srv');if(gistOn())reconcile('gist')};
+const flushSync=()=>['srv','gist'].forEach(ch=>{if(SYT[ch]){clearTimeout(SYT[ch]);SYT[ch]=0;reconcile(ch)}});
+A.gsave=()=>{const t=($('gtk').value||'').trim(),i=($('gid').value||'').trim();try{localStorage.setItem(GK,JSON.stringify({token:t,id:i}))}catch(e){}toast('✅ تنظیمات ابری ذخیره شد');syncAll(true);render()};
+A.gsync=()=>{toast('🔄 در حال همگام‌سازی…');syncAll(true)};
+A.gclear=()=>{try{localStorage.removeItem(GK)}catch(e){}SY.gist='';toast('اتصال Gist قطع شد');render()};
+A.gcreate=async()=>{
+  const t=($('gtk').value||'').trim();if(!t)return toast('ابتدا GitHub Token را وارد کن');
+  try{if(!D.updatedAt)D.updatedAt=Date.now();
+    const r=await fetch('https://api.github.com/gists',{method:'POST',headers:{Authorization:'Bearer '+t,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({description:'Cultivation RPG sync (private)',public:false,files:{[GF]:{content:JSON.stringify(D)}}})});
+    if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();
+    localStorage.setItem(GK,JSON.stringify({token:t,id:j.id}));SB.gist=D.updatedAt;toast('✅ Gist خصوصی ساخته شد');render();syncAll(true);
+  }catch(e){toast('❌ ساخت Gist ناموفق: '+e.message)}
+};
+const syncCard=()=>{const c=gcfg(),h=/^https?:$/.test(location.protocol);return `<section class="g p-4 space-y-2">${hd('cloud','☁️ سینک ابری خودکار (GitHub Gist)')}<div class="text-[11px] text-slate-400">🖥️ سرور لوکال (/api/db): <span id="sy-srv">${esc(h?(SRVNO?'در دسترس نیست':SY.srv||'در انتظار'):'غیرفعال (صفحه از فایل باز شده)')}</span></div><label class="text-xs text-slate-400 block">GitHub Token (دسترسی gist)<input id="gtk" type="password" autocomplete="off" value="${esc(c.token)}" placeholder="ghp_… یا github_pat_…"></label><label class="text-xs text-slate-400 block">Gist ID<input id="gid" value="${esc(c.id)}" placeholder="خالی بگذار و «ساخت خودکار» را بزن"></label><div class="flex flex-wrap gap-2"><button class="btn btn-p" data-a="gcreate">✨ ساخت خودکار Gist خصوصی</button><button class="btn" data-a="gsave">ذخیره</button><button class="btn" data-a="gsync">🔄 همگام‌سازی</button><button class="btn" data-a="gclear">قطع اتصال</button></div><div class="text-[11px] text-slate-400">وضعیت Gist: <span id="sy-gist">${esc(SY.gist||(gistOn()?'در انتظار':'غیرفعال'))}</span></div><div class="text-[11px] text-slate-400">توکن فقط در همین مرورگر می‌ماند و در Export نمی‌آید. در تعارض دو دستگاه، نسخهٔ جدیدتر برنده است و نسخهٔ بازنویسی‌شده بکاپ می‌شود. تایمر در حال اجرا فقط روی همان دستگاه می‌ماند.</div></section>`};
+
+/* ================= init ================= */
+_pris=!(localStorage.getItem(K4)||localStorage.getItem(K3)||localStorage.getItem(K2)||localStorage.getItem(K1))&&(srvOn()||gistOn());
+D=load();wbCalc();if(D.asc<0)D.asc=rkRaw(xpOf());fixAsc();ensureDay();chkAch();TMR.restore();save();render();_sig=sigOf();setTimeout(syncAll,300,true);
+setInterval(()=>{if(ensureDay()){save();render()}},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&ensureDay()){save();render()}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)flushSync();else syncAll()});
+setInterval(()=>{if(!document.hidden)syncAll()},60000);
+</script>
+</body>
+</html>
